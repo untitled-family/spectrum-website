@@ -19,8 +19,8 @@ export const typography = {
   },
 
   fonts: {
-    heading: `"Leitura", “Didot”, "Times New Roman", Times, serif`,
-    body: `"Nitti Grotesk", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
+    heading: 'Inter',
+    body: 'Inter',
   },
 
   fontSizes: {

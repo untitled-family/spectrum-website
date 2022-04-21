@@ -1,5 +1,4 @@
 import { extendTheme } from '@chakra-ui/react';
-import { fontBody, fontHeading } from './fonts';
 
 import { foundations } from './foundation';
 
@@ -21,14 +20,6 @@ export const theme = extendTheme({
       html: {
         // scrollPaddingTop: foundations.space.xl,
         scrollBehavior: 'smooth',
-      },
-      body: {
-        fontFamily: fontBody,
-        overflowX: 'hidden',
-      },
-      heading: {
-        fontFamily: fontHeading,
-        fontWeight: foundations.fontWeights.normal,
       },
     },
   },
