@@ -9,6 +9,7 @@ import {
 } from '@chakra-ui/react';
 import { DraggableSpectrum } from '../components/DraggableSpectrum';
 import { Grid } from '../components/Grid';
+import { Modal } from '../components/Modal';
 
 export default function Home() {
   return (
@@ -28,18 +29,10 @@ export default function Home() {
         colSpan={{ base: 12, sm: 8, md: 6, lg: 4, xl: 4 }}
         colStart={{ base: 1, sm: 3, md: 4, lg: 5, xl: 5 }}
       >
-        <Text>A collection of 1,111 Spectrums. 100% on-chain NFTs</Text>
-        <Button
-          mt="16px"
-          height="32px"
-          px="16px"
-          lineHeight={1}
-          fontSize="sm"
-          borderRadius="lg"
-          colorScheme="black"
-        >
-          Mint Now
-        </Button>
+        <Text>
+          A collection of 1,111 Spectrums. 100% generated on-chain NFTs
+        </Text>
+        <Modal />
 
         <DraggableSpectrum mt={20} image="/spectrum.svg">
           Each spectrum is made by combining between 3 to 6 layers of color that

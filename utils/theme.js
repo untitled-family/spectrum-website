@@ -19,6 +19,7 @@ export const theme = extendTheme({
       },
       html: {
         scrollBehavior: 'smooth',
+        fontSize: 'md',
       },
       a: {
         fontWeight: 'semibold',
