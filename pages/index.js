@@ -1,12 +1,4 @@
-import {
-  Heading,
-  GridItem,
-  Text,
-  Button,
-  Image,
-  Box,
-  Link,
-} from '@chakra-ui/react';
+import { Heading, GridItem, Text, Image, Box, Link } from '@chakra-ui/react';
 import { DraggableSpectrum } from '../components/DraggableSpectrum';
 import { Grid } from '../components/Grid';
 import { Modal } from '../components/Modal';

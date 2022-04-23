@@ -49,8 +49,14 @@ export const Modal = () => {
           <Stack direction="row" justifyContent="center" {...group}>
             {options.map((value) => {
               const radio = getRadioProps({ value });
+              const isActive = mintNumber >= value;
               return (
-                <Radio key={value} {...radio}>
+                <Radio
+                  key={value}
+                  isActive={isActive}
+                  zIndex={5 - value}
+                  {...radio}
+                >
                   {value}
                 </Radio>
               );
