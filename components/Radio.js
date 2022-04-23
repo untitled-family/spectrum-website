@@ -44,7 +44,7 @@ export const Radio = (props) => {
         cursor="pointer"
         borderWidth="1px"
         borderRadius="xl"
-        borderBg="blackAlpha.200"
+        borderColor="blackAlpha.200"
         bg="white"
         _checked={{
           bg: 'black.500',

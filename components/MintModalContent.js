@@ -1,11 +1,19 @@
-import { Button, Text, Box, Stack, useRadioGroup } from '@chakra-ui/react';
+import {
+  Button,
+  Text,
+  Box,
+  Stack,
+  useRadioGroup,
+  Link,
+} from '@chakra-ui/react';
 import { useCallback, useEffect, useState } from 'react';
-import { useContractWrite, useContractEvent } from 'wagmi';
+import { useContractWrite, useContractEvent, useContract } from 'wagmi';
 import { Radio } from './Radio';
 import { config } from '../utils/config';
 import contractABI from '../utils/contractABI.json';
 
-export const MintModalContent = () => {
+export const MintModalContent = ({ onMinted }) => {
+  const [tx, setTx] = useState(null);
   const [mintNumber, setMintNumber] = useState(1);
   const [isLoading, setLoading] = useState(false);
   const options = ['1', '2', '3', '4', '5'];
@@ -15,14 +23,6 @@ export const MintModalContent = () => {
       contractInterface: contractABI,
     },
     'mint'
-  );
-  useContractEvent(
-    {
-      addressOrName: config.contractAddress,
-      contractInterface: contractABI,
-    },
-    'onMintSuccess',
-    (event) => console.log(event)
   );
 
   const { getRootProps, getRadioProps } = useRadioGroup({
@@ -35,15 +35,19 @@ export const MintModalContent = () => {
 
   const mintNFT = async () => {
     setLoading(true);
-    await callContractMint({ args: [parseInt(mintNumber)] });
+    const tx = await callContractMint({ args: [parseInt(mintNumber)] });
+    console.log('tx', tx);
   };
 
   const waitForConfirmation = useCallback(async () => {
     if (data) {
+      setTx(data.hash);
+      console.log('data', data);
       await data.wait(1);
       setLoading(false);
+      onMinted();
     }
-  }, [data]);
+  }, [data, onMinted]);
 
   useEffect(() => {
     waitForConfirmation();
@@ -85,6 +89,19 @@ export const MintModalContent = () => {
           {(parseFloat(mintNumber) * 0.025).toFixed(3)} ETH
         </Box>
       </Button>
+      {tx && (
+        <Box mb={4}>
+          <Text color="blackAlpha.700">
+            Waiting for blockchain confirmation.
+          </Text>
+          <Text>
+            <Link isExternal href={`https://rinkeby.etherscan.io/tx/${tx}`}>
+              See transaction
+            </Link>{' '}
+            on Etherscan
+          </Text>
+        </Box>
+      )}
       <Text color="blackAlpha.700">
         Each of your spectrums will be random on mint. We use ERC-721A to keep
         gas as low as possible.

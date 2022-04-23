@@ -5,12 +5,14 @@ import {
   Button,
   useDisclosure,
 } from '@chakra-ui/react';
+import { useState } from 'react';
 import { useAccount, useConnect } from 'wagmi';
 import { ConnectModalContent } from './ConnectModalContent';
 import { MintModalContent } from './MintModalContent';
+import { MintedModalContent } from './MintedModalContent';
 
 export const Modal = () => {
-  const [{ data: connectData, error: connectError }, connect] = useConnect();
+  const [isMinted, setMinted] = useState(false);
   const [{ data: accountData }, disconnect] = useAccount();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -32,8 +34,25 @@ export const Modal = () => {
       </Button>
       <ChakraModal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
-        <ModalContent borderRadius="2xl" py={10} px={8} textAlign="center">
-          {accountData ? <MintModalContent /> : <ConnectModalContent />}
+        <ModalContent
+          borderRadius="2xl"
+          py={10}
+          px={8}
+          textAlign="center"
+          alignSelf="center"
+          my={0}
+        >
+          {isMinted ? (
+            <MintedModalContent />
+          ) : (
+            <>
+              {accountData ? (
+                <MintModalContent onMinted={() => setMinted(true)} />
+              ) : (
+                <ConnectModalContent />
+              )}
+            </>
+          )}
         </ModalContent>
       </ChakraModal>
     </>
