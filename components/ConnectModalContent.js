@@ -33,7 +33,7 @@ export const ConnectModalContent = () => {
         fontWeight="normal"
         color="blackAlpha.700"
       >
-        I don’t have a wallet
+        I don't have a wallet
       </Link>
     </>
   );
