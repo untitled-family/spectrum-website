@@ -1,7 +1,7 @@
 {
-  "name": "nextstarter",
+  "name": "kinetic-spectrums-website",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "scripts": {
     "lint": "eslint .",
     "lint:fix": "eslint . --fix",
