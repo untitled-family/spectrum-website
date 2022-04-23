@@ -25,7 +25,8 @@ export const Modal = () => {
         lineHeight={1}
         fontSize="sm"
         borderRadius="lg"
-        colorScheme="black"
+        colorScheme="white"
+        color="black"
         onClick={onOpen}
       >
         Mint Now
@@ -39,6 +40,7 @@ export const Modal = () => {
           textAlign="center"
           alignSelf="center"
           my={0}
+          color="black.500"
         >
           {isMinted ? (
             <MintedModalContent />

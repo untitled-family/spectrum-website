@@ -7,7 +7,13 @@ export default function Home() {
   return (
     <Grid textAlign="center" fontSize="md">
       <GridItem colSpan={12}>
-        <Heading mt={12} fontWeight="semibold" fontSize="lg" as="h1">
+        <Heading
+          mt={12}
+          fontWeight="semibold"
+          fontSize="lg"
+          as="h1"
+          color="white"
+        >
           Kinetic Spectrums
         </Heading>
       </GridItem>
@@ -19,7 +25,7 @@ export default function Home() {
       </GridItem>
       <GridItem colSpan={12}>
         <Box maxWidth="375px" mx="auto">
-          <Text>
+          <Text color="white">
             A collection of 1,111 Spectrums. 100% generated on-chain NFTs
           </Text>
           <Modal />

@@ -21,6 +21,10 @@ export const theme = extendTheme({
         scrollBehavior: 'smooth',
         fontSize: 'md',
       },
+      body: {
+        color: 'grey',
+        background: 'black',
+      },
       a: {
         fontWeight: 'semibold',
       },
