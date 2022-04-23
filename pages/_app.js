@@ -5,9 +5,10 @@ import { InjectedConnector } from 'wagmi/connectors/injected';
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect';
 import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet';
 import { theme } from '../utils/theme';
+import { config } from '../utils/config';
 import '../styles/globals.css';
 
-const infuraId = process.env.INFURA_ID;
+const { infuraId } = config;
 
 // Chains for connectors to support
 const chains = defaultChains;
@@ -30,7 +31,7 @@ const connectors = ({ chainId }) => {
     }),
     new CoinbaseWalletConnector({
       options: {
-        appName: 'My wagmi app',
+        appName: 'Kinetic Spectrums',
         jsonRpcUrl: `${rpcUrl}/${infuraId}`,
       },
     }),
