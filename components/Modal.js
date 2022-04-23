@@ -6,17 +6,15 @@ import {
   useDisclosure,
 } from '@chakra-ui/react';
 import { useState } from 'react';
-import { useAccount, useConnect } from 'wagmi';
+import { useAccount } from 'wagmi';
 import { ConnectModalContent } from './ConnectModalContent';
 import { MintModalContent } from './MintModalContent';
 import { MintedModalContent } from './MintedModalContent';
 
 export const Modal = () => {
   const [isMinted, setMinted] = useState(false);
-  const [{ data: accountData }, disconnect] = useAccount();
+  const [{ data: accountData }] = useAccount();
   const { isOpen, onOpen, onClose } = useDisclosure();
-
-  console.log('accountData', accountData);
 
   return (
     <>

@@ -1,11 +1,4 @@
-import {
-  Button,
-  Text,
-  Box,
-  Stack,
-  useRadioGroup,
-  Link,
-} from '@chakra-ui/react';
+import { Text, Link } from '@chakra-ui/react';
 import { useAccount } from 'wagmi';
 
 export const MintedModalContent = () => {

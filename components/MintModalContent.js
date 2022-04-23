@@ -7,7 +7,8 @@ import {
   Link,
 } from '@chakra-ui/react';
 import { useCallback, useEffect, useState } from 'react';
-import { useContractWrite, useContractEvent, useContract } from 'wagmi';
+import { useContractWrite } from 'wagmi';
+import PropTypes from 'prop-types';
 import { Radio } from './Radio';
 import { config } from '../utils/config';
 import contractABI from '../utils/contractABI.json';
@@ -17,7 +18,7 @@ export const MintModalContent = ({ onMinted }) => {
   const [mintNumber, setMintNumber] = useState(1);
   const [isLoading, setLoading] = useState(false);
   const options = ['1', '2', '3', '4', '5'];
-  const [{ data, error }, callContractMint] = useContractWrite(
+  const [{ data }, callContractMint] = useContractWrite(
     {
       addressOrName: config.contractAddress,
       contractInterface: contractABI,
@@ -35,14 +36,12 @@ export const MintModalContent = ({ onMinted }) => {
 
   const mintNFT = async () => {
     setLoading(true);
-    const tx = await callContractMint({ args: [parseInt(mintNumber)] });
-    console.log('tx', tx);
+    await callContractMint({ args: [parseInt(mintNumber)] });
   };
 
   const waitForConfirmation = useCallback(async () => {
     if (data) {
       setTx(data.hash);
-      console.log('data', data);
       await data.wait(1);
       setLoading(false);
       onMinted();
@@ -108,4 +107,8 @@ export const MintModalContent = ({ onMinted }) => {
       </Text>
     </>
   );
+};
+
+MintModalContent.propTypes = {
+  onMinted: PropTypes.func.isRequired,
 };
