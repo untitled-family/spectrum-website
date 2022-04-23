@@ -1,5 +1,3 @@
-import { clamp } from './clamp';
-
 export const typography = {
   letterSpacings: {
     tight: '-0.005em',
@@ -10,7 +8,7 @@ export const typography = {
   lineHeights: {
     none: 1,
     short: 1.2,
-    base: 1.3,
+    base: 1.69,
   },
 
   fontWeights: {
@@ -24,11 +22,8 @@ export const typography = {
   },
 
   fontSizes: {
-    sm: clamp(16, 20),
-    md: clamp(16, 24),
-    lg: clamp(18, 48),
-    xl: clamp(24, 80),
-    '2xl': clamp(32, 110, 'xs', '2xl'),
-    '3xl': clamp(48, 195),
+    sm: '12px',
+    md: '13px',
+    lg: '15px',
   },
 };
