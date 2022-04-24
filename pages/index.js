@@ -6,8 +6,8 @@ import {
   Box,
   Link,
   Flex,
-  GridItem,
 } from '@chakra-ui/react';
+import Head from 'next/head';
 import { Detail } from '../components/Detail';
 import { Modal } from '../components/Modal';
 import { Section } from '../components/Section';
@@ -16,6 +16,9 @@ import { Grid } from '../components/Grid';
 export default function Home() {
   return (
     <Box textAlign="center" fontSize="md">
+      <Head>
+        <title>Kinetic Spectrums - On-chain SVGs</title>
+      </Head>
       <Box
         minH={{ base: 'calc(100vh - 80px)', md: '100vh' }}
         display="flex"
