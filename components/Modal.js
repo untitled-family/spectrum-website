@@ -4,17 +4,43 @@ import {
   ModalContent,
   Button,
   useDisclosure,
+  Box,
+  Spinner,
+  Text,
 } from '@chakra-ui/react';
-import { useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { useAccount } from 'wagmi';
+import axios from 'axios';
 import { ConnectModalContent } from './ConnectModalContent';
 import { MintModalContent } from './MintModalContent';
 import { MintedModalContent } from './MintedModalContent';
 
 export const Modal = () => {
   const [isMinted, setMinted] = useState(false);
+  const [isWhitelisted, setWhitelisted] = useState(undefined);
   const [{ data: accountData }] = useAccount();
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const verifyForWhitelist = useCallback(() => {
+    axios
+      .post('/api/verify', {
+        address: accountData.address,
+      })
+      .then(function (response) {
+        const { data } = response;
+
+        setWhitelisted(data.whitelisted);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }, [accountData?.address]);
+
+  useEffect(() => {
+    if (accountData && accountData.address) {
+      verifyForWhitelist();
+    }
+  }, [accountData, verifyForWhitelist]);
 
   return (
     <>
@@ -47,7 +73,19 @@ export const Modal = () => {
           ) : (
             <>
               {accountData ? (
-                <MintModalContent onMinted={() => setMinted(true)} />
+                <>
+                  {isWhitelisted === undefined ? (
+                    <Box py={8}>
+                      <Spinner size="sm" />
+                      <Text mt={4}>Verifiying you're whitelisted</Text>
+                    </Box>
+                  ) : (
+                    <MintModalContent
+                      isWhitelisted={isWhitelisted}
+                      onMinted={() => setMinted(true)}
+                    />
+                  )}
+                </>
               ) : (
                 <ConnectModalContent />
               )}

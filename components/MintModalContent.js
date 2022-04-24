@@ -14,7 +14,7 @@ import { Radio } from './Radio';
 import { config } from '../utils/config';
 import contractABI from '../utils/contractABI.json';
 
-export const MintModalContent = ({ onMinted }) => {
+export const MintModalContent = ({ onMinted, isWhitelisted }) => {
   const [err, setError] = useState(null);
   const [tx, setTx] = useState(null);
   const [mintNumber, setMintNumber] = useState(1);
@@ -100,11 +100,18 @@ export const MintModalContent = ({ onMinted }) => {
         fontWeight="normal"
         onClick={mintNFT}
         isLoading={isLoading}
+        disabled={!isWhitelisted}
       >
-        Mint Now{' '}
-        <Box as="strong" ml={1}>
-          {(parseFloat(mintNumber) * config.price).toFixed(3)} ETH
-        </Box>
+        {isWhitelisted ? (
+          <>
+            Mint Now{' '}
+            <Box as="strong" ml={1}>
+              {(parseFloat(mintNumber) * config.price).toFixed(3)} ETH
+            </Box>
+          </>
+        ) : (
+          'Not whitelisted'
+        )}
       </Button>
       {tx && (
         <Box mb={4}>
