@@ -94,13 +94,6 @@ export default function Home() {
               alt="combining colors"
               borderRadius="full"
             />
-            <Image
-              width="40px"
-              height="40px"
-              src="/7.svg"
-              alt="combining colors"
-              borderRadius="full"
-            />
           </Flex>
         </Section>
 

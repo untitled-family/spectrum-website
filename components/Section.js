@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 export const Section = ({ children }) => (
   <Box
     as="section"
-    minH="100vh"
+    minH="70vh"
     display="flex"
     alignItems="center"
     justifyContent="center"
