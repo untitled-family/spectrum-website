@@ -1,12 +1,17 @@
-import { Heading, GridItem, Text, Image, Box, Link } from '@chakra-ui/react';
-import { DraggableSpectrum } from '../components/DraggableSpectrum';
-import { Grid } from '../components/Grid';
+import { Heading, Text, Image, Box, Link } from '@chakra-ui/react';
 import { Modal } from '../components/Modal';
 
 export default function Home() {
   return (
-    <Grid textAlign="center" fontSize="md">
-      <GridItem colSpan={12}>
+    <Box textAlign="center" fontSize="md">
+      <Box
+        minH="100vh"
+        display="flex"
+        alignItems="center"
+        justifyContent="space-between"
+        flexDirection="column"
+        px={4}
+      >
         <Heading
           mt={12}
           fontWeight="semibold"
@@ -16,76 +21,111 @@ export default function Home() {
         >
           Kinetic Spectrums
         </Heading>
-      </GridItem>
-      <GridItem
-        colSpan={{ base: 12, md: 10, lg: 8, xl: 6 }}
-        colStart={{ base: 1, md: 2, lg: 3, xl: 4 }}
-      >
-        <Image my={8} src="/spectrum.svg" alt="Kinetic Sepctrum" />
-      </GridItem>
-      <GridItem colSpan={12}>
-        <Box maxWidth="375px" mx="auto">
-          <Text color="white">
+
+        <Image
+          flex="1"
+          maxH="70vh"
+          maxW="70vw"
+          mx="auto"
+          src="/spectrum.svg"
+          alt="Kinetic Sepctrum"
+        />
+
+        <Box mb={12}>
+          <Text>
             A collection of 1,111 Spectrums. 100% generated on-chain NFTs
           </Text>
           <Modal />
+        </Box>
+      </Box>
+      <Box maxWidth="390px" mx="auto">
+        <Box
+          minH="100vh"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          flexDirection="column"
+          px={4}
+        >
+          <Text fontWeight="semibold">
+            Kinetic Spectrums is a collection of dynamic, ever changing artworks
+            stored on the Ethereum Network.
+          </Text>
+          <Text mt={6}>
+            Each Spectrum is made by combining 2 to 5 layers of color. These
+            layers multiply with each other and slowly rotate at a different
+            speeds meaning your NFT is constantly changing color and evolving
+            the longer you watch it.
+          </Text>
+          <Image mx="auto" mt={8} src="/layers.png" alt="combining colors" />
+        </Box>
 
-          <DraggableSpectrum mt={20} image="/spectrum.svg">
-            Each spectrum is made by combining between 3 to 6 layers of color
-            that are randomly assigned on mint.
-          </DraggableSpectrum>
-          <DraggableSpectrum image="/spectrum.svg">
-            These layers then multiply with each other to create new colors as
-            the layers rotate and offset each other.
-          </DraggableSpectrum>
-          <DraggableSpectrum image="/spectrum.svg">
-            Each layer rotates at a different speed meaning your NFT is
-            constantly changing and evolving the longer you watch.
-          </DraggableSpectrum>
-          <DraggableSpectrum image="/spectrum.svg">
+        <Box
+          minH="100vh"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          flexDirection="column"
+          px={4}
+        >
+          <Text>
+            As well as their unique colors, each Spectrum has a layer of detail
+            that adds another level of color variation to your Spectrum. There
+            are 6 levels of detail rarity.
+          </Text>
+        </Box>
+
+        <Box
+          minH="100vh"
+          display="flex"
+          alignItems="center"
+          justifyContent="center"
+          flexDirection="column"
+          px={4}
+        >
+          <Text>
             All spectrums are 100% on-chain. This means they're stored directly
             on the Ethereum blockchain. Spectrums will live as long as the
             Ethereum blockchain exists.
-          </DraggableSpectrum>
-          <DraggableSpectrum image="/spectrum.svg">
-            <>
-              Kinetic Spectrums was created by{' '}
-              <Link
-                fontWeight="semibold"
-                href="https://twitter.com/pixel_arts"
-                isExternal
-              >
-                himlate.eth
-              </Link>{' '}
-              and{' '}
-              <Link
-                fontWeight="semibold"
-                href="https://twitter.com/biron_io"
-                isExternal
-              >
-                biron.eth
-              </Link>
-              <br />
-              All Spectrums are licensed under{' '}
-              <Link
-                href="https://creativecommons.org/share-your-work/public-domain/cc0/"
-                isExternal
-              >
-                CC0
-              </Link>
-              <br />
-              View the Kinetic Spectrums{' '}
-              <Link href="https://etherscan.io/" isExternal>
-                contract
-              </Link>
-            </>
-          </DraggableSpectrum>
-
-          <Box mb={12} mt={8}>
-            Opensea - Looksrare - Zora
-          </Box>
+          </Text>
         </Box>
-      </GridItem>
-    </Grid>
+
+        <Text mt={60}>
+          Kinetic Spectrums was created by{' '}
+          <Link
+            fontWeight="semibold"
+            href="https://twitter.com/pixel_arts"
+            isExternal
+          >
+            himlate.eth
+          </Link>{' '}
+          and{' '}
+          <Link
+            fontWeight="semibold"
+            href="https://twitter.com/biron_io"
+            isExternal
+          >
+            biron.eth
+          </Link>
+          <br />
+          All Spectrums are licensed under{' '}
+          <Link
+            href="https://creativecommons.org/share-your-work/public-domain/cc0/"
+            isExternal
+          >
+            CC0
+          </Link>
+          <br />
+          View the Kinetic Spectrums{' '}
+          <Link href="https://etherscan.io/" isExternal>
+            contract
+          </Link>
+        </Text>
+
+        <Box mb={12} mt={8}>
+          Opensea - Looksrare - Zora
+        </Box>
+      </Box>
+    </Box>
   );
 }
