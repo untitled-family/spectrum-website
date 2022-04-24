@@ -144,4 +144,5 @@ export const MintModalContent = ({ onMinted, isWhitelisted }) => {
 
 MintModalContent.propTypes = {
   onMinted: PropTypes.func.isRequired,
+  isWhitelisted: PropTypes.bool,
 };

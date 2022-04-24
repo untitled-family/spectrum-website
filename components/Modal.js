@@ -30,9 +30,6 @@ export const Modal = () => {
         const { data } = response;
 
         setWhitelisted(data.whitelisted);
-      })
-      .catch(function (error) {
-        console.log(error);
       });
   }, [accountData?.address]);
 
