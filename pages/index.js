@@ -11,7 +11,7 @@ export default function Home() {
         alignItems="center"
         justifyContent="space-between"
         flexDirection="column"
-        px={4}
+        px={6}
       >
         <Heading
           mt={12}

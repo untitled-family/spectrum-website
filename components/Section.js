@@ -9,7 +9,7 @@ export const Section = ({ children }) => (
     alignItems="center"
     justifyContent="center"
     flexDirection="column"
-    px={4}
+    px={6}
   >
     {children}
   </Box>
