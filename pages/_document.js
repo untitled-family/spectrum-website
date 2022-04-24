@@ -49,6 +49,7 @@ export default function Document() {
         <meta name="og:url" content="https://kineticspectru.ms/" />
         <meta name="og:site_name" content="Kinetic Spectrums" />
         <meta name="og:type" content="website" />
+        <link rel="icon" href="/epic.svg" />
       </Head>
       <body>
         <Main />
