@@ -66,7 +66,7 @@ export const MintModalContent = ({ onMinted }) => {
     if (error) {
       setLoading(false);
       setError(true);
-      console.log(error);
+      // console.log(error);
     }
   }, [error]);
 
