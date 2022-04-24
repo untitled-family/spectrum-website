@@ -6,6 +6,7 @@ import {
   useRadioGroup,
   Link,
 } from '@chakra-ui/react';
+import { ethers } from 'ethers';
 import { useCallback, useEffect, useState } from 'react';
 import { useContractWrite } from 'wagmi';
 import PropTypes from 'prop-types';
@@ -40,7 +41,11 @@ export const MintModalContent = ({ onMinted }) => {
     setError(false);
     await callContractMint({
       args: [parseInt(mintNumber)],
-      overrides: { value: config.priceWei * parseInt(mintNumber) },
+      overrides: {
+        value: ethers.utils.parseEther(
+          (parseInt(mintNumber) * config.price).toString()
+        ),
+      },
     });
   };
 
@@ -107,7 +112,10 @@ export const MintModalContent = ({ onMinted }) => {
             Waiting for blockchain confirmation.
           </Text>
           <Text>
-            <Link isExternal href={`https://rinkeby.etherscan.io/tx/${tx}`}>
+            <Link
+              isExternal
+              href={`${process.env.NEXT_PUBLIC_ETHERSCAN_URL}tx/${tx}`}
+            >
               See transaction
             </Link>{' '}
             on Etherscan

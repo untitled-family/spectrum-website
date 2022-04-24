@@ -11,7 +11,7 @@ export const MintedModalContent = () => {
       <Text color="blackAlpha.700">
         <Link
           fontWeight="normal"
-          href={`https://opensea.io/${accountData.address}`}
+          href={`${process.env.NEXT_PUBLIC_OPENSEA_URL}${accountData.address}`}
         >
           View on Opensea
         </Link>
