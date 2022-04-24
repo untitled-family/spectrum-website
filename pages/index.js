@@ -14,7 +14,7 @@ export default function Home() {
   return (
     <Box textAlign="center" fontSize="md">
       <Box
-        minH="100vh"
+        minH={{ base: 'calc(100vh - 80px)', md: '100vh' }}
         display="flex"
         alignItems="center"
         justifyContent="space-between"
@@ -34,7 +34,7 @@ export default function Home() {
         <Image
           flex="1"
           maxH="70vh"
-          maxW="70vw"
+          maxW="85vw"
           mx="auto"
           src="/spectrum.svg"
           alt="Kinetic Sepctrum"
