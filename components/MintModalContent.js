@@ -14,11 +14,12 @@ import { config } from '../utils/config';
 import contractABI from '../utils/contractABI.json';
 
 export const MintModalContent = ({ onMinted }) => {
+  const [err, setError] = useState(null);
   const [tx, setTx] = useState(null);
   const [mintNumber, setMintNumber] = useState(1);
   const [isLoading, setLoading] = useState(false);
   const options = ['1', '2', '3', '4', '5'];
-  const [{ data }, callContractMint] = useContractWrite(
+  const [{ data, error }, callContractMint] = useContractWrite(
     {
       addressOrName: config.contractAddress,
       contractInterface: contractABI,
@@ -36,7 +37,11 @@ export const MintModalContent = ({ onMinted }) => {
 
   const mintNFT = async () => {
     setLoading(true);
-    await callContractMint({ args: [parseInt(mintNumber)] });
+    setError(false);
+    await callContractMint({
+      args: [parseInt(mintNumber)],
+      overrides: { value: config.priceWei * parseInt(mintNumber) },
+    });
   };
 
   const waitForConfirmation = useCallback(async () => {
@@ -51,6 +56,14 @@ export const MintModalContent = ({ onMinted }) => {
   useEffect(() => {
     waitForConfirmation();
   }, [data, waitForConfirmation]);
+
+  useEffect(() => {
+    if (error) {
+      setLoading(false);
+      setError(true);
+      console.log(error);
+    }
+  }, [error]);
 
   return (
     <>
@@ -85,7 +98,7 @@ export const MintModalContent = ({ onMinted }) => {
       >
         Mint Now{' '}
         <Box as="strong" ml={1}>
-          {(parseFloat(mintNumber) * 0.025).toFixed(3)} ETH
+          {(parseFloat(mintNumber) * config.price).toFixed(3)} ETH
         </Box>
       </Button>
       {tx && (
@@ -99,6 +112,11 @@ export const MintModalContent = ({ onMinted }) => {
             </Link>{' '}
             on Etherscan
           </Text>
+        </Box>
+      )}
+      {err && (
+        <Box mb={4}>
+          <Text>Something went wrong</Text>
         </Box>
       )}
       <Text color="blackAlpha.700">
