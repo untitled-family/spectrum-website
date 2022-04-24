@@ -1,5 +1,6 @@
 import { MerkleTree } from 'merkletreejs';
 import keccak256 from 'keccak256';
+import { withSentry } from '@sentry/nextjs';
 
 const handler = async (req, res) => {
   const { method } = req;
@@ -29,4 +30,4 @@ const handler = async (req, res) => {
   }
 };
 
-export default handler;
+export default withSentry(handler);

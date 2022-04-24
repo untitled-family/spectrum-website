@@ -29,7 +29,7 @@ const colors = {
   },
 };
 
-export const Detail = ({ detail, ...rest }) => (
+export const Detail = ({ detail }) => (
   <GridItem colSpan={{ base: 4, md: 2 }}>
     <Box
       display="flex"
@@ -62,6 +62,5 @@ export const Detail = ({ detail, ...rest }) => (
 );
 
 Detail.propTypes = {
-  children: PropTypes.node.isRequired,
   detail: PropTypes.oneOf(Object.keys(colors)),
 };
