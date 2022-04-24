@@ -1,5 +1,6 @@
 import { Heading, Text, Image, Box, Link } from '@chakra-ui/react';
 import { Modal } from '../components/Modal';
+import { Section } from '../components/Section';
 
 export default function Home() {
   return (
@@ -39,14 +40,7 @@ export default function Home() {
         </Box>
       </Box>
       <Box maxWidth="390px" mx="auto">
-        <Box
-          minH="100vh"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          flexDirection="column"
-          px={4}
-        >
+        <Section>
           <Text fontWeight="semibold">
             Kinetic Spectrums is a collection of dynamic, ever changing artworks
             stored on the Ethereum Network.
@@ -58,37 +52,23 @@ export default function Home() {
             the longer you watch it.
           </Text>
           <Image mx="auto" mt={8} src="/layers.png" alt="combining colors" />
-        </Box>
+        </Section>
 
-        <Box
-          minH="100vh"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          flexDirection="column"
-          px={4}
-        >
+        <Section>
           <Text>
             As well as their unique colors, each Spectrum has a layer of detail
             that adds another level of color variation to your Spectrum. There
             are 6 levels of detail rarity.
           </Text>
-        </Box>
+        </Section>
 
-        <Box
-          minH="100vh"
-          display="flex"
-          alignItems="center"
-          justifyContent="center"
-          flexDirection="column"
-          px={4}
-        >
+        <Section>
           <Text>
             All spectrums are 100% on-chain. This means they're stored directly
             on the Ethereum blockchain. Spectrums will live as long as the
             Ethereum blockchain exists.
           </Text>
-        </Box>
+        </Section>
 
         <Text mt={60}>
           Kinetic Spectrums was created by{' '}
