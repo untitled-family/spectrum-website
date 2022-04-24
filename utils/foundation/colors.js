@@ -29,4 +29,6 @@ const generateColourPalette = (baseColor) => {
 
 export const colors = {
   black: generateColourPalette('#000'),
+  white: generateColourPalette('#fff'),
+  grey: generateColourPalette('#B7B7B7'),
 };

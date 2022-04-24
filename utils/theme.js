@@ -5,7 +5,7 @@ import { foundations } from './foundation';
 const config = {
   useSystemColorMode: false,
   initialColorMode: 'light',
-  cssVarPrefix: 'andopen',
+  cssVarPrefix: 'spectrums',
 };
 
 export const theme = extendTheme({
@@ -18,8 +18,15 @@ export const theme = extendTheme({
         boxShadow: 'none',
       },
       html: {
-        // scrollPaddingTop: foundations.space.xl,
         scrollBehavior: 'smooth',
+        fontSize: 'md',
+      },
+      body: {
+        color: 'white',
+        background: 'black',
+      },
+      a: {
+        fontWeight: 'semibold',
       },
     },
   },
