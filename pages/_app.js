@@ -4,6 +4,7 @@ import { Provider, chain, defaultChains } from 'wagmi';
 import { InjectedConnector } from 'wagmi/connectors/injected';
 import { WalletConnectConnector } from 'wagmi/connectors/walletConnect';
 import { CoinbaseWalletConnector } from 'wagmi/connectors/coinbaseWallet';
+import ReactGA from 'react-ga4';
 import { theme } from '../utils/theme';
 import { config } from '../utils/config';
 import '../styles/globals.css';
@@ -12,6 +13,9 @@ const { infuraId } = config;
 
 // Chains for connectors to support
 const chains = defaultChains;
+
+ReactGA.initialize('G-HRW21WE8M6');
+ReactGA.send('pageview');
 
 // Set up connectors
 const connectors = ({ chainId }) => {
