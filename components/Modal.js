@@ -45,9 +45,9 @@ export const Modal = () => {
   return (
     <>
       <Button
-        mt="16px"
+        mt={4}
         height="32px"
-        px="16px"
+        px={4}
         lineHeight={1}
         fontSize="sm"
         borderRadius="lg"
@@ -55,7 +55,7 @@ export const Modal = () => {
         color="black"
         onClick={onOpen}
       >
-        Mint Now
+        Connect Wallet
       </Button>
       <ChakraModal isOpen={isOpen} onClose={onClose}>
         <ModalOverlay />
