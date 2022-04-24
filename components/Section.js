@@ -1,7 +1,7 @@
 import { Box } from '@chakra-ui/react';
 import PropTypes from 'prop-types';
 
-export const Section = ({ children }) => (
+export const Section = ({ children, ...rest }) => (
   <Box
     as="section"
     minH="70vh"
@@ -10,6 +10,7 @@ export const Section = ({ children }) => (
     justifyContent="center"
     flexDirection="column"
     px={6}
+    {...rest}
   >
     {children}
   </Box>

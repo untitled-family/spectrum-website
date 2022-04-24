@@ -6,9 +6,12 @@ import {
   Box,
   Link,
   Flex,
+  GridItem,
 } from '@chakra-ui/react';
+import { Detail } from '../components/Detail';
 import { Modal } from '../components/Modal';
 import { Section } from '../components/Section';
+import { Grid } from '../components/Grid';
 
 export default function Home() {
   return (
@@ -46,8 +49,9 @@ export default function Home() {
           {/* <Modal /> */}
         </Box>
       </Box>
-      <Box maxWidth="390px" mx="auto">
-        <Section>
+
+      <Section maxWidth="390px" mx="auto">
+        <Box>
           <Text fontWeight="semibold">
             Kinetic Spectrums is a collection of dynamic, ever changing artworks
             stored on the Ethereum Network.
@@ -58,146 +62,71 @@ export default function Home() {
             speeds meaning your NFT is constantly changing color and evolving
             the longer you watch it.
           </Text>
-          <Flex width="full" alignItems="center" justifyContent="space-between">
-            <Image
-              width="40px"
-              height="40px"
-              src="/2.svg"
-              alt="combining colors"
-              borderRadius="full"
-            />
-            <Image
-              width="40px"
-              height="40px"
-              src="/3.svg"
-              alt="combining colors"
-              borderRadius="full"
-            />
-            <Image
-              width="40px"
-              height="40px"
-              src="/4.svg"
-              alt="combining colors"
-              borderRadius="full"
-            />
-            <Image
-              width="40px"
-              height="40px"
-              src="/5.svg"
-              alt="combining colors"
-              borderRadius="full"
-            />
-            <Image
-              width="40px"
-              height="40px"
-              src="/6.svg"
-              alt="combining colors"
-              borderRadius="full"
-            />
-          </Flex>
-        </Section>
+        </Box>
+        <Flex width="full" alignItems="center" justifyContent="space-between">
+          <Image
+            width="40px"
+            height="40px"
+            src="/2.svg"
+            alt="combining colors"
+            borderRadius="full"
+          />
+          <Image
+            width="40px"
+            height="40px"
+            src="/3.svg"
+            alt="combining colors"
+            borderRadius="full"
+          />
+          <Image
+            width="40px"
+            height="40px"
+            src="/4.svg"
+            alt="combining colors"
+            borderRadius="full"
+          />
+          <Image
+            width="40px"
+            height="40px"
+            src="/5.svg"
+            alt="combining colors"
+            borderRadius="full"
+          />
+          <Image
+            width="40px"
+            height="40px"
+            src="/6.svg"
+            alt="combining colors"
+            borderRadius="full"
+          />
+        </Flex>
+      </Section>
 
-        <Section>
-          <Text>
-            As well as their unique colors, each Spectrum has a layer of detail
-            that adds another level of color variation to your Spectrum. There
-            are 6 levels of detail rarity.
-          </Text>
-          <Flex
-            mt={8}
-            width="full"
-            alignItems="center"
-            justifyContent="space-between"
-          >
-            <Box
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-              flexDirection="column"
-            >
-              <Image
-                borderRadius="full"
-                width="80px"
-                height="80px"
-                src="/8.svg"
-                alt="Detail rarity"
-                mb={3.5}
-              />
-              <Text
-                px={3}
-                py={0.5}
-                bg="#304b82"
-                color="#ABE6FF"
-                fontSize="xs"
-                fontWeight="semibold"
-                borderRadius="12px"
-              >
-                RARE
-              </Text>
-            </Box>
-            <Box
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-              flexDirection="column"
-            >
-              <Image
-                borderRadius="full"
-                width="80px"
-                height="80px"
-                src="/9.svg"
-                alt="Detail rarity"
-                mb={3.5}
-              />
-              <Text
-                px={3}
-                py={0.5}
-                bg="#543280"
-                color="#E5C5FF"
-                fontSize="xs"
-                fontWeight="semibold"
-                borderRadius="12px"
-              >
-                EPIC
-              </Text>
-            </Box>
-            <Box
-              display="flex"
-              alignItems="center"
-              justifyContent="center"
-              flexDirection="column"
-            >
-              <Image
-                borderRadius="full"
-                width="80px"
-                height="80px"
-                src="/10.svg"
-                alt="Detail rarity"
-                mb={3.5}
-              />
-              <Text
-                px={3}
-                py={0.5}
-                bg="#4c3200"
-                color="#FFC165"
-                fontSize="xs"
-                fontWeight="semibold"
-                borderRadius="12px"
-              >
-                LEGENDARY
-              </Text>
-            </Box>
-          </Flex>
-        </Section>
+      <Section>
+        <Text maxWidth="390px" mx="auto">
+          As well as their unique colors, each Spectrum has a layer of detail
+          which defines its rarity. There are 6 levels of detail which are
+          assigned randomly on mint.
+        </Text>
 
-        <Section>
-          <Text>
-            Each Spectrum is generated on mint to be unique. All Spectrums are
-            100% on-chain. This means they’re stored directly on the Ethereum
-            blockchain. Spectrums will live as long as the Ethereum blockchain
-            exists.
-          </Text>
-          {/* <Button
+        <Grid mt={8} maxW="720px" mx="auto">
+          <Detail detail="common" />
+          <Detail detail="rare" />
+          <Detail detail="epic" />
+          <Detail detail="legendary" />
+          <Detail detail="impossible" />
+          <Detail detail="perfect" />
+        </Grid>
+      </Section>
+
+      <Section maxWidth="390px" mx="auto">
+        <Text>
+          Each Spectrum is generated on mint to be unique. All Spectrums are
+          100% on-chain. This means they’re stored directly on the Ethereum
+          blockchain. Spectrums will live as long as the Ethereum blockchain
+          exists.
+        </Text>
+        {/* <Button
             mt={4}
             height="32px"
             px={4}
@@ -209,9 +138,10 @@ export default function Home() {
           >
             Connect Wallet
           </Button> */}
-        </Section>
+      </Section>
 
-        <Text mt={60}>
+      <Box as="footer" mt={60}>
+        <Text>
           Kinetic Spectrums was created by{' '}
           <Link
             fontWeight="semibold"
@@ -228,7 +158,8 @@ export default function Home() {
           >
             biron.eth
           </Link>
-          <br />
+        </Text>
+        <Text>
           All Spectrums are licensed under{' '}
           <Link
             href="https://creativecommons.org/share-your-work/public-domain/cc0/"
@@ -236,16 +167,39 @@ export default function Home() {
           >
             CC0
           </Link>
-          <br />
+        </Text>
+        <Text>
           View the Kinetic Spectrums{' '}
           <Link href="https://etherscan.io/" isExternal>
             contract
           </Link>
         </Text>
+      </Box>
 
-        <Box mb={12} mt={8}>
-          Opensea - Looksrare - Zora
-        </Box>
+      <Box mb={12} mt={8}>
+        <Link
+          mx={1}
+          href="https://creativecommons.org/share-your-work/public-domain/cc0/"
+          isExternal
+        >
+          Opensea
+        </Link>{' '}
+        •{' '}
+        <Link
+          mx={1}
+          href="https://creativecommons.org/share-your-work/public-domain/cc0/"
+          isExternal
+        >
+          Looksrare
+        </Link>{' '}
+        •{' '}
+        <Link
+          mx={1}
+          href="https://creativecommons.org/share-your-work/public-domain/cc0/"
+          isExternal
+        >
+          Zora
+        </Link>
       </Box>
     </Box>
   );
