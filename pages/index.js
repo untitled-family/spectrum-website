@@ -43,7 +43,7 @@ export default function Home() {
 
         <Box mb={12}>
           <Text>1,111 Spectrums. 100% on-chain NFTs.</Text>
-          <Modal />
+          {/* <Modal /> */}
         </Box>
       </Box>
       <Box maxWidth="390px" mx="auto">
@@ -204,7 +204,7 @@ export default function Home() {
             blockchain. Spectrums will live as long as the Ethereum blockchain
             exists.
           </Text>
-          <Button
+          {/* <Button
             mt={4}
             height="32px"
             px={4}
@@ -215,7 +215,7 @@ export default function Home() {
             color="black"
           >
             Connect Wallet
-          </Button>
+          </Button> */}
         </Section>
 
         <Text mt={60}>
