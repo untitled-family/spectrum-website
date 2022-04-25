@@ -15,7 +15,13 @@ import { Grid } from '../components/Grid';
 
 export default function Home() {
   const preloadSelectorSVGs = () => {
-    const images = ['/1.svg', '/2.svg', '/3.svg', '/4.svg', '/5.svg'];
+    const images = [
+      '/selectors/1.svg',
+      '/selectors/2.svg',
+      '/selectors/3.svg',
+      '/selectors/4.svg',
+      '/selectors/5.svg',
+    ];
     images.forEach((pic) => {
       const img = new Image();
       img.src = pic.fileName;
