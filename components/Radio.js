@@ -31,7 +31,7 @@ export const Radio = (props) => {
           borderWidth={props.isActive ? 0 : 1}
           borderColor={props.isActive ? 'transparent' : 'blackAlpha.100'}
           borderRadius="full"
-          backgroundImage={props.isActive ? 'url(/spectrum.svg)' : ''}
+          backgroundImage={props.isActive ? `url(${props.image})` : ''}
           backgroundSize="cover"
           _hover={{
             borderColor: props.isActive ? 'transparent' : 'blackAlpha.300',
@@ -74,4 +74,5 @@ Radio.propTypes = {
   children: PropTypes.node.isRequired,
   zIndex: PropTypes.number,
   isActive: PropTypes.bool,
+  image: PropTypes.string,
 };
