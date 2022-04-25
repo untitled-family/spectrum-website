@@ -10,10 +10,7 @@ export default function Document() {
           content="Kinetic Spectrums is a collection of dynamic, ever changing artworks stored on the Ethereum Network."
         />
         <meta name="image" content="https://kineticspectru.ms/meta-og.png" />
-        <meta
-          itemProp="name"
-          content="Kinetic Spectrums - 1,111 Spectrums. 100% on-chain NFTs"
-        />
+        <meta itemProp="name" content="Kinetic Spectrums" />
         <meta
           itemProp="description"
           content="Kinetic Spectrums is a collection of dynamic, ever changing artworks stored on the Ethereum Network."
@@ -49,7 +46,7 @@ export default function Document() {
         <meta name="og:url" content="https://kineticspectru.ms/" />
         <meta name="og:site_name" content="Kinetic Spectrums" />
         <meta name="og:type" content="website" />
-        <link rel="icon" href="/epic.svg" />
+        <link rel="icon" href="/favicon.png" />
       </Head>
       <body>
         <Main />

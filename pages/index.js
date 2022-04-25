@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <Box textAlign="center" fontSize="md">
       <Head>
-        <title>Kinetic Spectrums - On-chain SVGs</title>
+        <title>Kinetic Spectrums</title>
       </Head>
       <Box
         minH={{ base: 'calc(100vh - 80px)', md: '100vh' }}
