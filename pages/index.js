@@ -1,19 +1,31 @@
 import {
-  Button,
   Heading,
   Text,
-  Image,
+  Image as ChakraImage,
   Box,
   Link,
   Flex,
 } from '@chakra-ui/react';
 import Head from 'next/head';
+import { useEffect } from 'react';
 import { Detail } from '../components/Detail';
 import { Modal } from '../components/Modal';
 import { Section } from '../components/Section';
 import { Grid } from '../components/Grid';
 
 export default function Home() {
+  const preloadSelectorSVGs = () => {
+    const images = ['/1.svg', '/2.svg', '/3.svg', '/4.svg', '/5.svg'];
+    images.forEach((pic) => {
+      const img = new Image();
+      img.src = pic.fileName;
+    });
+  };
+
+  useEffect(() => {
+    preloadSelectorSVGs();
+  }, []);
+
   return (
     <Box textAlign="center" fontSize="md">
       <Head>
@@ -37,7 +49,7 @@ export default function Home() {
           Kinetic Spectrums
         </Heading>
 
-        <Image
+        <ChakraImage
           flex="1"
           maxH="70vh"
           maxW="85vw"
@@ -67,35 +79,35 @@ export default function Home() {
           </Text>
         </Box>
         <Flex width="full" alignItems="center" justifyContent="space-between">
-          <Image
+          <ChakraImage
             width="40px"
             height="40px"
             src="/2.svg"
             alt="combining colors"
             borderRadius="full"
           />
-          <Image
+          <ChakraImage
             width="40px"
             height="40px"
             src="/3.svg"
             alt="combining colors"
             borderRadius="full"
           />
-          <Image
+          <ChakraImage
             width="40px"
             height="40px"
             src="/4.svg"
             alt="combining colors"
             borderRadius="full"
           />
-          <Image
+          <ChakraImage
             width="40px"
             height="40px"
             src="/5.svg"
             alt="combining colors"
             borderRadius="full"
           />
-          <Image
+          <ChakraImage
             width="40px"
             height="40px"
             src="/6.svg"
