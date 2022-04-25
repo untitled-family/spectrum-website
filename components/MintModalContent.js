@@ -10,6 +10,7 @@ import { ethers } from 'ethers';
 import { useCallback, useEffect, useState } from 'react';
 import { useContractWrite } from 'wagmi';
 import PropTypes from 'prop-types';
+import * as Sentry from '@sentry/nextjs';
 import { Radio } from './Radio';
 import { config } from '../utils/config';
 import contractABI from '../utils/contractABI.json';
@@ -66,7 +67,7 @@ export const MintModalContent = ({ onMinted, isWhitelisted }) => {
     if (error) {
       setLoading(false);
       setError(true);
-      // console.log(error);
+      Sentry.captureException(error);
     }
   }, [error]);
 

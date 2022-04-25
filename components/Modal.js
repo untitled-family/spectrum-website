@@ -11,6 +11,7 @@ import {
 import { useCallback, useEffect, useState } from 'react';
 import { useAccount } from 'wagmi';
 import axios from 'axios';
+import * as Sentry from '@sentry/nextjs';
 import { ConnectModalContent } from './ConnectModalContent';
 import { MintModalContent } from './MintModalContent';
 import { MintedModalContent } from './MintedModalContent';
@@ -30,6 +31,9 @@ export const Modal = () => {
         const { data } = response;
 
         setWhitelisted(data.whitelisted);
+      })
+      .catch(function (error) {
+        Sentry.captureException(error);
       });
   }, [accountData?.address]);
 
