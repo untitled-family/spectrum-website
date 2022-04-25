@@ -161,7 +161,7 @@ export default function Home() {
 
       <Box as="footer" mt={60}>
         <Text>
-          Kinetic Spectrums was created by{' '}
+          Created by{' '}
           <Link
             fontWeight="semibold"
             href="https://twitter.com/pixel_arts"
