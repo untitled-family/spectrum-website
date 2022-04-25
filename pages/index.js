@@ -9,7 +9,7 @@ import {
 } from '@chakra-ui/react';
 import Head from 'next/head';
 import { Detail } from '../components/Detail';
-import { Modal } from '../components/Modal';
+// import { Modal } from '../components/Modal';
 import { Section } from '../components/Section';
 import { Grid } from '../components/Grid';
 
@@ -49,7 +49,21 @@ export default function Home() {
 
         <Box mb={12}>
           <Text>1,111 Spectrums. 100% on-chain NFTs.</Text>
-          <Modal />
+          {/* <Modal /> */}
+          <Link href="https://twitter.com" isExternal>
+            <Button
+              mt={4}
+              height="32px"
+              px={4}
+              lineHeight={1}
+              fontSize="sm"
+              borderRadius="lg"
+              colorScheme="white"
+              color="black"
+            >
+              Join the friends list
+            </Button>
+          </Link>
         </Box>
       </Box>
 
@@ -129,21 +143,20 @@ export default function Home() {
           blockchain. Spectrums will live as long as the Ethereum blockchain
           exists.
         </Text>
-        <Button
-          mt={4}
-          height="32px"
-          px={4}
-          lineHeight={1}
-          fontSize="sm"
-          borderRadius="lg"
-          colorScheme="white"
-          color="black"
-          onClick={() => {
-            throw new Error('Sentry Frontend Error');
-          }}
-        >
-          Connect Wallet
-        </Button>
+        <Link href="https://twitter.com" isExternal>
+          <Button
+            mt={4}
+            height="32px"
+            px={4}
+            lineHeight={1}
+            fontSize="sm"
+            borderRadius="lg"
+            colorScheme="white"
+            color="black"
+          >
+            Join the friends list
+          </Button>
+        </Link>
       </Section>
 
       <Box as="footer" mt={60}>
@@ -174,16 +187,16 @@ export default function Home() {
             CC0
           </Link>
         </Text>
-        <Text>
+        {/* <Text>
           View the Kinetic Spectrums{' '}
           <Link href="https://etherscan.io/" isExternal>
             contract
           </Link>
-        </Text>
+        </Text> */}
       </Box>
 
       <Box mb={12} mt={8}>
-        <Link
+        {/* <Link
           mx={1}
           href="https://creativecommons.org/share-your-work/public-domain/cc0/"
           isExternal
@@ -205,7 +218,7 @@ export default function Home() {
           isExternal
         >
           Zora
-        </Link>
+        </Link> */}
       </Box>
     </Box>
   );
