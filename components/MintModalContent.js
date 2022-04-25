@@ -26,7 +26,7 @@ export const MintModalContent = ({ onMinted, isWhitelisted, proof }) => {
       addressOrName: config.contractAddress,
       contractInterface: contractABI,
     },
-    isWhitelisted ? 'friendsMint' : 'mint'
+    isWhitelisted ? 'friendMint' : 'mint'
   );
   const basePrice = isWhitelisted ? config.friendPrice : config.price;
 
