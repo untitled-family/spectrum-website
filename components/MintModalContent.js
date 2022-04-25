@@ -116,7 +116,8 @@ export const MintModalContent = ({ onMinted, isWhitelisted, proof }) => {
         })}
       </Stack>
       <Button
-        my={8}
+        mt={8}
+        mb={6}
         height="47px"
         borderRadius="xl"
         colorScheme="black"
@@ -135,6 +136,11 @@ export const MintModalContent = ({ onMinted, isWhitelisted, proof }) => {
           </Box>
         )}
       </Button>
+      {isWhitelisted && (
+        <Text mb={4} color="#00A455">
+          Friends list discount applied
+        </Text>
+      )}
       {tx && (
         <Box mb={4}>
           <Text color="blackAlpha.700">
