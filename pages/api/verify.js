@@ -7,7 +7,10 @@ const handler = async (req, res) => {
   switch (method) {
     case 'POST': {
       const { address } = req.body;
-      const whitelistAddresses = ['0xFF5FE6e0D3D48c90A66217dd4A7560a3ed8dACD2'];
+      const whitelistAddresses = [
+        '0xFF5FE6e0D3D48c90A66217dd4A7560a3ed8dACD2',
+        '0x9cdd6e35ee8cd6d8f37c19b9cd59395efa330cf1',
+      ];
 
       const leafNodes = whitelistAddresses.map((a) => keccak256(a));
       const merkletree = new MerkleTree(leafNodes, keccak256, {
@@ -20,6 +23,9 @@ const handler = async (req, res) => {
 
       res.json({
         whitelisted: merkletree.verify(proof, hashedAddress, rootHash),
+        rootHash,
+        proof,
+        hashedAddress,
       });
       break;
     }

@@ -19,6 +19,7 @@ import { MintedModalContent } from './MintedModalContent';
 export const Modal = () => {
   const [isMinted, setMinted] = useState(false);
   const [isWhitelisted, setWhitelisted] = useState(undefined);
+  const [proof, setProof] = useState(null);
   const [{ data: accountData }] = useAccount();
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -30,6 +31,10 @@ export const Modal = () => {
       .then(function (response) {
         const { data } = response;
 
+        if (data.whitelisted) {
+          setProof(data.proof);
+        }
+
         setWhitelisted(data.whitelisted);
       })
       .catch(function (error) {
@@ -38,10 +43,10 @@ export const Modal = () => {
   }, [accountData?.address]);
 
   useEffect(() => {
-    if (accountData && accountData.address) {
+    if (accountData && accountData.address && !isWhitelisted) {
       verifyForWhitelist();
     }
-  }, [accountData, verifyForWhitelist]);
+  }, [isWhitelisted, accountData, verifyForWhitelist]);
 
   return (
     <>
@@ -83,6 +88,7 @@ export const Modal = () => {
                   ) : (
                     <MintModalContent
                       isWhitelisted={isWhitelisted}
+                      proof={proof}
                       onMinted={() => setMinted(true)}
                     />
                   )}

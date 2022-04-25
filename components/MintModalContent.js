@@ -15,7 +15,7 @@ import { Radio } from './Radio';
 import { config } from '../utils/config';
 import contractABI from '../utils/contractABI.json';
 
-export const MintModalContent = ({ onMinted, isWhitelisted }) => {
+export const MintModalContent = ({ onMinted, isWhitelisted, proof }) => {
   const [err, setError] = useState(null);
   const [tx, setTx] = useState(null);
   const [mintNumber, setMintNumber] = useState(1);
@@ -43,7 +43,7 @@ export const MintModalContent = ({ onMinted, isWhitelisted }) => {
     setError(false);
     await callContractMint({
       args: isWhitelisted
-        ? [parseInt(mintNumber), 'prooof']
+        ? [parseInt(mintNumber), proof]
         : [parseInt(mintNumber)],
       overrides: {
         value: ethers.utils.parseEther(
@@ -167,4 +167,5 @@ export const MintModalContent = ({ onMinted, isWhitelisted }) => {
 MintModalContent.propTypes = {
   onMinted: PropTypes.func.isRequired,
   isWhitelisted: PropTypes.bool,
+  proof: PropTypes.array,
 };
