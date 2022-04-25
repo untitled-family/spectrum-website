@@ -86,6 +86,7 @@ export const MintModalContent = ({ onMinted, isWhitelisted }) => {
           fontWeight="semibold"
           borderRadius="20px"
           width="200px"
+          border="1px solid #003F21"
           py={1}
           px={2}
         >
