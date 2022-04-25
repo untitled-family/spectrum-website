@@ -125,9 +125,14 @@ export const MintModalContent = ({ onMinted, isWhitelisted }) => {
         w="full"
       >
         Mint Now{' '}
-        <Box as="strong" ml={1}>
+        <Box as="strong" ml={3}>
           {(parseFloat(mintNumber) * basePrice).toFixed(3)} ETH
         </Box>
+        {isWhitelisted && (
+          <Box pl={3} as="span" textDecoration="line-through">
+            {(parseFloat(mintNumber) * config.price).toFixed(3)} ETH
+          </Box>
+        )}
       </Button>
       {tx && (
         <Box mb={4}>
