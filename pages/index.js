@@ -50,7 +50,10 @@ export default function Home() {
         <Box mb={12}>
           <Text>1,111 Spectrums. 100% on-chain NFTs.</Text>
           {/* <Modal /> */}
-          {/* <Link href="https://twitter.com/kineticspectrum" isExternal>
+          <Link
+            href="https://twitter.com/biron_io/status/1518959370490597377"
+            isExternal
+          >
             <Button
               mt={4}
               height="32px"
@@ -63,7 +66,7 @@ export default function Home() {
             >
               Join the friends list
             </Button>
-          </Link> */}
+          </Link>
         </Box>
       </Box>
 
@@ -143,7 +146,10 @@ export default function Home() {
           blockchain. Spectrums will live as long as the Ethereum blockchain
           exists.
         </Text>
-        {/* <Link href="https://twitter.com/kineticspectrum" isExternal>
+        <Link
+          href="https://twitter.com/biron_io/status/1518959370490597377"
+          isExternal
+        >
           <Button
             mt={4}
             height="32px"
@@ -156,7 +162,7 @@ export default function Home() {
           >
             Join the friends list
           </Button>
-        </Link> */}
+        </Link>
       </Section>
 
       <Box as="footer" mt={60}>
