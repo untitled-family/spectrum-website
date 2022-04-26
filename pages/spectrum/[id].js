@@ -23,6 +23,7 @@ const details = [
   'legendary',
   'impossible',
   'perfect',
+  'founder',
 ];
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
@@ -73,7 +74,7 @@ const Spectrum = () => {
               alt="Kinetic Sepctrum"
               borderRadius="full"
             />
-            <Grid py={10} maxW="500px" mx="auto">
+            <Grid py={10} maxW="600px" mx="auto">
               <GridItem colSpan={12}>
                 <Detail
                   hasImage={false}
@@ -81,7 +82,7 @@ const Spectrum = () => {
                 />
               </GridItem>
               {data.spectrum.metadata.attributes.map((attribute, index) => (
-                <GridItem colSpan={{ base: 6, md: 4 }}>
+                <GridItem key={index} colSpan={{ base: 6, md: 4 }}>
                   <Box
                     borderRadius="2xl"
                     border="1px solid rgba(255,255,255,0.2)"

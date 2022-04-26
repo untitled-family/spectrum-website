@@ -27,6 +27,11 @@ const colors = {
     backgroundColor: 'black',
     border: '1px solid white ',
   },
+  founder: {
+    color: 'white',
+    backgroundColor: 'black',
+    border: '1px dotted white ',
+  },
 };
 
 export const Detail = ({ detail, hasImage }) => (
