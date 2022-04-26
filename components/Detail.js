@@ -29,7 +29,7 @@ const colors = {
   },
 };
 
-export const Detail = ({ detail }) => (
+export const Detail = ({ detail, hasImage }) => (
   <GridItem colSpan={{ base: 4, md: 2 }}>
     <Box
       display="flex"
@@ -38,14 +38,17 @@ export const Detail = ({ detail }) => (
       flexDirection="column"
       mb={6}
     >
-      <Image
-        borderRadius="full"
-        width="80px"
-        height="80px"
-        src={`/${detail}.svg`}
-        alt="Detail rarity"
-        mb={3.5}
-      />
+      {hasImage && (
+        <Image
+          borderRadius="full"
+          width="80px"
+          height="80px"
+          src={`/${detail}.svg`}
+          alt="Detail rarity"
+          mb={3.5}
+        />
+      )}
+
       <Text
         px={3}
         py={0.5}
@@ -63,4 +66,9 @@ export const Detail = ({ detail }) => (
 
 Detail.propTypes = {
   detail: PropTypes.oneOf(Object.keys(colors)),
+  hasImage: PropTypes.bool,
+};
+
+Detail.defaultProps = {
+  hasImage: true,
 };
