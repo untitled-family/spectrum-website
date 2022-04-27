@@ -1,23 +1,41 @@
 import {
-  Button,
   Heading,
   Text,
-  Image,
+  Image as ChakraImage,
   Box,
   Link,
   Flex,
 } from '@chakra-ui/react';
 import Head from 'next/head';
+import { useEffect } from 'react';
 import { Detail } from '../components/Detail';
-// import { Modal } from '../components/Modal';
+import { Modal } from '../components/Modal';
 import { Section } from '../components/Section';
 import { Grid } from '../components/Grid';
 
 export default function Home() {
+  const preloadSelectorSVGs = () => {
+    const images = [
+      '/selectors/1.svg',
+      '/selectors/2.svg',
+      '/selectors/3.svg',
+      '/selectors/4.svg',
+      '/selectors/5.svg',
+    ];
+    images.forEach((pic) => {
+      const img = new Image();
+      img.src = pic.fileName;
+    });
+  };
+
+  useEffect(() => {
+    preloadSelectorSVGs();
+  }, []);
+
   return (
     <Box textAlign="center" fontSize="md">
       <Head>
-        <title>Kinetic Spectrums - On-chain SVGs</title>
+        <title>Kinetic Spectrums</title>
       </Head>
       <Box
         minH={{ base: 'calc(100vh - 80px)', md: '100vh' }}
@@ -37,7 +55,7 @@ export default function Home() {
           Kinetic Spectrums
         </Heading>
 
-        <Image
+        <ChakraImage
           flex="1"
           maxH="70vh"
           maxW="85vw"
@@ -49,24 +67,7 @@ export default function Home() {
 
         <Box mb={12}>
           <Text>1,111 Spectrums. 100% on-chain NFTs.</Text>
-          {/* <Modal /> */}
-          <Link
-            href="https://twitter.com/biron_io/status/1518959370490597377"
-            isExternal
-          >
-            <Button
-              mt={4}
-              height="32px"
-              px={4}
-              lineHeight={1}
-              fontSize="sm"
-              borderRadius="lg"
-              colorScheme="white"
-              color="black"
-            >
-              Join the friends list
-            </Button>
-          </Link>
+          <Modal />
         </Box>
       </Box>
 
@@ -84,35 +85,35 @@ export default function Home() {
           </Text>
         </Box>
         <Flex width="full" alignItems="center" justifyContent="space-between">
-          <Image
+          <ChakraImage
             width="40px"
             height="40px"
             src="/2.svg"
             alt="combining colors"
             borderRadius="full"
           />
-          <Image
+          <ChakraImage
             width="40px"
             height="40px"
             src="/3.svg"
             alt="combining colors"
             borderRadius="full"
           />
-          <Image
+          <ChakraImage
             width="40px"
             height="40px"
             src="/4.svg"
             alt="combining colors"
             borderRadius="full"
           />
-          <Image
+          <ChakraImage
             width="40px"
             height="40px"
             src="/5.svg"
             alt="combining colors"
             borderRadius="full"
           />
-          <Image
+          <ChakraImage
             width="40px"
             height="40px"
             src="/6.svg"
@@ -146,23 +147,7 @@ export default function Home() {
           blockchain. Spectrums will live as long as the Ethereum blockchain
           exists.
         </Text>
-        <Link
-          href="https://twitter.com/biron_io/status/1518959370490597377"
-          isExternal
-        >
-          <Button
-            mt={4}
-            height="32px"
-            px={4}
-            lineHeight={1}
-            fontSize="sm"
-            borderRadius="lg"
-            colorScheme="white"
-            color="black"
-          >
-            Join the friends list
-          </Button>
-        </Link>
+        <Modal />
       </Section>
 
       <Box as="footer" mt={60}>
@@ -193,18 +178,21 @@ export default function Home() {
             CC0
           </Link>
         </Text>
-        {/* <Text>
+        <Text>
           View the Kinetic Spectrums{' '}
-          <Link href="https://etherscan.io/" isExternal>
+          <Link
+            href="https://etherscan.io/address/0x2ac9795ca8fc6d09a5748cb9e8b9d67f4b09df07"
+            isExternal
+          >
             contract
           </Link>
-        </Text> */}
+        </Text>
       </Box>
 
       <Box mb={12} mt={8}>
-        {/* <Link
+        <Link
           mx={1}
-          href="https://creativecommons.org/share-your-work/public-domain/cc0/"
+          href="https://opensea.io/collection/kinetic-spectrums"
           isExternal
         >
           Opensea
@@ -212,19 +200,11 @@ export default function Home() {
         •{' '}
         <Link
           mx={1}
-          href="https://creativecommons.org/share-your-work/public-domain/cc0/"
+          href="https://looksrare.org/collections/0x2Ac9795Ca8fc6d09a5748CB9E8B9D67f4B09df07"
           isExternal
         >
           Looksrare
-        </Link>{' '}
-        •{' '}
-        <Link
-          mx={1}
-          href="https://creativecommons.org/share-your-work/public-domain/cc0/"
-          isExternal
-        >
-          Zora
-        </Link> */}
+        </Link>
       </Box>
     </Box>
   );

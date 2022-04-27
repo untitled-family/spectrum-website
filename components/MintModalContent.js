@@ -15,7 +15,7 @@ import { Radio } from './Radio';
 import { config } from '../utils/config';
 import contractABI from '../utils/contractABI.json';
 
-export const MintModalContent = ({ onMinted, isWhitelisted }) => {
+export const MintModalContent = ({ onMinted, isWhitelisted, proof }) => {
   const [err, setError] = useState(null);
   const [tx, setTx] = useState(null);
   const [mintNumber, setMintNumber] = useState(1);
@@ -26,8 +26,9 @@ export const MintModalContent = ({ onMinted, isWhitelisted }) => {
       addressOrName: config.contractAddress,
       contractInterface: contractABI,
     },
-    'mint'
+    isWhitelisted ? 'friendMint' : 'mint'
   );
+  const basePrice = isWhitelisted ? config.friendPrice : config.price;
 
   const { getRootProps, getRadioProps } = useRadioGroup({
     name: 'mintCount',
@@ -41,10 +42,12 @@ export const MintModalContent = ({ onMinted, isWhitelisted }) => {
     setLoading(true);
     setError(false);
     await callContractMint({
-      args: [parseInt(mintNumber)],
+      args: isWhitelisted
+        ? [parseInt(mintNumber), proof]
+        : [parseInt(mintNumber)],
       overrides: {
         value: ethers.utils.parseEther(
-          (parseInt(mintNumber) * config.price).toString()
+          (parseInt(mintNumber) * basePrice).toString()
         ),
       },
     });
@@ -72,7 +75,25 @@ export const MintModalContent = ({ onMinted, isWhitelisted }) => {
   }, [error]);
 
   return (
-    <>
+    <Box position="relative">
+      {isWhitelisted && (
+        <Box
+          bg="#1CE886"
+          position="absolute"
+          top="-45px"
+          left="50%"
+          transform="translateX(-50%)"
+          fontWeight="semibold"
+          borderRadius="20px"
+          width="200px"
+          border="1px solid #003F21"
+          py={1}
+          px={2}
+        >
+          🌈 You're on the friends list
+        </Box>
+      )}
+
       <Text mb={8}>
         How many <strong>Spectrums</strong> would you like to mint?
       </Text>
@@ -86,6 +107,7 @@ export const MintModalContent = ({ onMinted, isWhitelisted }) => {
               key={value}
               isActive={isActive}
               zIndex={5 - value}
+              image={`/selectors/${value}.svg`}
               {...radio}
             >
               {value}
@@ -94,26 +116,31 @@ export const MintModalContent = ({ onMinted, isWhitelisted }) => {
         })}
       </Stack>
       <Button
-        my={8}
+        mt={8}
+        mb={6}
         height="47px"
         borderRadius="xl"
         colorScheme="black"
         fontWeight="normal"
         onClick={mintNFT}
         isLoading={isLoading}
-        disabled={!isWhitelisted}
+        w="full"
       >
-        {isWhitelisted ? (
-          <>
-            Mint Now{' '}
-            <Box as="strong" ml={1}>
-              {(parseFloat(mintNumber) * config.price).toFixed(3)} ETH
-            </Box>
-          </>
-        ) : (
-          'Not whitelisted'
+        Mint Now{' '}
+        <Box as="strong" ml={3}>
+          {(parseFloat(mintNumber) * basePrice).toFixed(3)} ETH
+        </Box>
+        {isWhitelisted && (
+          <Box pl={3} as="span" textDecoration="line-through">
+            {(parseFloat(mintNumber) * config.price).toFixed(3)} ETH
+          </Box>
         )}
       </Button>
+      {isWhitelisted && !isLoading && (
+        <Text mb={4} color="#00A455">
+          Friends list discount applied
+        </Text>
+      )}
       {tx && (
         <Box mb={4}>
           <Text color="blackAlpha.700">
@@ -135,15 +162,18 @@ export const MintModalContent = ({ onMinted, isWhitelisted }) => {
           <Text>Something went wrong</Text>
         </Box>
       )}
-      <Text color="blackAlpha.700">
-        Each of your spectrums will be random on mint. We use ERC-721A to keep
-        gas as low as possible.
-      </Text>
-    </>
+      {!isLoading && (
+        <Text color="blackAlpha.700">
+          Each of your spectrums will be random on mint. We use ERC-721A to keep
+          gas as low as possible.
+        </Text>
+      )}
+    </Box>
   );
 };
 
 MintModalContent.propTypes = {
   onMinted: PropTypes.func.isRequired,
   isWhitelisted: PropTypes.bool,
+  proof: PropTypes.array,
 };
