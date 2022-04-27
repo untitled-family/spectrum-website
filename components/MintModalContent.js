@@ -136,7 +136,7 @@ export const MintModalContent = ({ onMinted, isWhitelisted, proof }) => {
           </Box>
         )}
       </Button>
-      {isWhitelisted && (
+      {isWhitelisted && !isLoading && (
         <Text mb={4} color="#00A455">
           Friends list discount applied
         </Text>
@@ -162,10 +162,12 @@ export const MintModalContent = ({ onMinted, isWhitelisted, proof }) => {
           <Text>Something went wrong</Text>
         </Box>
       )}
-      <Text color="blackAlpha.700">
-        Each of your spectrums will be random on mint. We use ERC-721A to keep
-        gas as low as possible.
-      </Text>
+      {!isLoading && (
+        <Text color="blackAlpha.700">
+          Each of your spectrums will be random on mint. We use ERC-721A to keep
+          gas as low as possible.
+        </Text>
+      )}
     </Box>
   );
 };
