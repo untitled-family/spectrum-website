@@ -17,8 +17,8 @@ export const typography = {
   },
 
   fonts: {
-    heading: 'Inter',
-    body: 'Inter',
+    heading: 'Inter, sans-serif',
+    body: 'Inter, sans-serif',
   },
 
   fontSizes: {
