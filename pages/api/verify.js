@@ -47,7 +47,7 @@ const handler = async (req, res) => {
         '0xCdFFFB8006113488c88B368E4D3001F47d373dc7', // @ethanattewell
         '0xE44B4921BBBEb537f19C1b6229aD903eb105B21D ', // @hodkt3
         '0x38cb027d65aaf2d3f401ff9bd0599afe86f1b627', // heyhaigh.eth
-        '',
+        '0x9857b416a7e84dee915444e03f389203e9ec3c5b', // callbot.eth
       ];
 
       const leafNodes = whitelistAddresses.map((a) => keccak256(a));
