@@ -83,7 +83,7 @@ export const Modal = () => {
                   {isWhitelisted === undefined ? (
                     <Box py={8}>
                       <Spinner size="sm" />
-                      <Text mt={4}>Verifiying you're whitelisted</Text>
+                      <Text mt={4}>Verifiying you're a friend</Text>
                     </Box>
                   ) : (
                     <MintModalContent
