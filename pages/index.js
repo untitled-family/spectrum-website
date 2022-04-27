@@ -152,7 +152,7 @@ export default function Home() {
 
       <Box as="footer" mt={60}>
         <Text>
-          Kinetic Spectrums was created by{' '}
+          Created by{' '}
           <Link
             fontWeight="semibold"
             href="https://twitter.com/pixel_arts"
@@ -178,18 +178,21 @@ export default function Home() {
             CC0
           </Link>
         </Text>
-        {/* <Text>
+        <Text>
           View the Kinetic Spectrums{' '}
-          <Link href="https://etherscan.io/" isExternal>
+          <Link
+            href="https://etherscan.io/address/0x2ac9795ca8fc6d09a5748cb9e8b9d67f4b09df07"
+            isExternal
+          >
             contract
           </Link>
-        </Text> */}
+        </Text>
       </Box>
 
       <Box mb={12} mt={8}>
-        {/* <Link
+        <Link
           mx={1}
-          href="https://creativecommons.org/share-your-work/public-domain/cc0/"
+          href="https://opensea.io/collection/kinetic-spectrums"
           isExternal
         >
           Opensea
@@ -197,19 +200,11 @@ export default function Home() {
         •{' '}
         <Link
           mx={1}
-          href="https://creativecommons.org/share-your-work/public-domain/cc0/"
+          href="https://looksrare.org/collections/0x2Ac9795Ca8fc6d09a5748CB9E8B9D67f4B09df07"
           isExternal
         >
           Looksrare
-        </Link>{' '}
-        •{' '}
-        <Link
-          mx={1}
-          href="https://creativecommons.org/share-your-work/public-domain/cc0/"
-          isExternal
-        >
-          Zora
-        </Link> */}
+        </Link>
       </Box>
     </Box>
   );
