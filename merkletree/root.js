@@ -31,6 +31,17 @@ const friends = [
   '0x0A828953F4A30F097E6217bcfCB8fc4f7c9Aa110', // @tomomot420
   '0x5b48e85D4C2ca9D1FFbEf295973D755D935fE23E', // @oneli33
   '0x33E51e61FB3F83B4Ffb0ae0df2Ece8f52E24e990', // @jdothue
+  '0xde13f752a3b12a8918ff84bc048a50b73f5240a6', // truthpurity.eth
+  '0x29169AC28e447c50831d4968A7E8D7fe9471e18E', // trensodlz
+  '0xB69e003622Aec81F7C30bE0dfcf69dAc6A040abc', // @cosmotresmil
+  '0x7f25f8ce08edba7a18e6d9a7fa1bca4854c6a31d', // jahl.eth
+  '0x3932f608f69eeb3e58ee067be0b03ca4d82da6fb', // loz.eth
+  '0xb188ee1daca51ce6b58ccf8a81ce4025a714bc73', // elpizo.eth
+  '0xfeef2e81211d485ea5698505883a36d64f72e60c', // ddadybayo.eth
+  '0xCdFFFB8006113488c88B368E4D3001F47d373dc7', // @ethanattewell
+  '0xE44B4921BBBEb537f19C1b6229aD903eb105B21D ', // @hodkt3
+  '0x38cb027d65aaf2d3f401ff9bd0599afe86f1b627', // heyhaigh.eth
+  '',
 ];
 
 const leafNodes = friends.map((a) => keccak256(a));
