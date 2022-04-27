@@ -56,7 +56,7 @@ const handler = async (req, res) => {
         sortPairs: true,
       });
       const rootHash = merkletree.getRoot().toString('hex');
-      console.log(rootHash);
+
       const hashedAddress = keccak256(address);
       const proof = merkletree.getHexProof(hashedAddress);
 
