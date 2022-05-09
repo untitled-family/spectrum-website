@@ -5,13 +5,10 @@ import {
   Text,
   Image as ChakraImage,
   Box,
-  Link as ChakraLink,
-  Flex,
   Spinner,
   GridItem,
 } from '@chakra-ui/react';
 import Head from 'next/head';
-import { useEffect } from 'react';
 import useSwr from 'swr';
 import { Grid } from '../../components/Grid';
 import { Detail } from '../../components/Detail';
