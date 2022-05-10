@@ -12,6 +12,7 @@ import Head from 'next/head';
 import useSwr from 'swr';
 import { Grid } from '../../components/Grid';
 import { Detail } from '../../components/Detail';
+import { SpectrumSvg } from '../../components/SpectrumSvg';
 
 const details = [
   'common',
@@ -57,10 +58,6 @@ const Spectrum = () => {
 
   console.log(data);
 
-  if (data?.spectrum?.metadata?.attributes) {
-    console.log(getLayers(data.spectrum.metadata.attributes));
-  }
-
   return (
     <Box textAlign="center" fontSize="md">
       <Head>
@@ -83,6 +80,14 @@ const Spectrum = () => {
 
         {data && data?.spectrum?.metadata?.image && (
           <>
+            <SpectrumSvg
+              borderRadius="full"
+              flex="1"
+              maxH="70vh"
+              maxW="85vw"
+              mx="auto"
+              layers={getLayers(data.spectrum.metadata.attributes)}
+            />
             <ChakraImage
               flex="1"
               maxH="70vh"
