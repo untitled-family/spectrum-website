@@ -8,7 +8,6 @@ const camelize = (str) =>
     .replace(/\s+/g, '');
 
 export const SpectrumBorder = ({ detail }) => {
-  console.log('camelize(detail)', camelize(detail));
   switch (camelize(detail)) {
     case 'commonSingle':
       return (
