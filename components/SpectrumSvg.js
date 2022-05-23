@@ -27,7 +27,7 @@ export const SpectrumSvg = ({ layers, detail, time, ...props }) => (
               transform={!time ? null : `rotate(${rotation} 500 500)`}
             >
               <circle cx="500" cy="500" r="500" fill={`url(#layer_${index})`} />
-              {!time && (
+              {!time && time !== 0 && (
                 <animateTransform
                   attributeType="xml"
                   attributeName="transform"
