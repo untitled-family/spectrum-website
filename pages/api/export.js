@@ -8,12 +8,11 @@ const handler = async (req, res) => {
     case 'POST': {
       const { svg } = req.body;
 
-      // console.log('svg', svg);
       sharp(Buffer.from(svg))
         .png()
-        .toBuffer((err, data, info) => {
+        .toBuffer((err, data) => {
           if (err) {
-            console.log('error', err);
+            res.status(500).end(err);
           }
 
           res.json({

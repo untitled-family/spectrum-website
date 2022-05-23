@@ -50,4 +50,4 @@ const merkletree = new MerkleTree(leafNodes, keccak256, {
   sortPairs: true,
 });
 const rootHash = merkletree.getRoot().toString('hex');
-console.log(rootHash);
+// console.log(rootHash);
