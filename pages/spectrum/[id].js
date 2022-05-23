@@ -13,6 +13,8 @@ import useSwr from 'swr';
 import { Grid } from '../../components/Grid';
 import { Detail } from '../../components/Detail';
 import { SpectrumSvg } from '../../components/SpectrumSvg';
+import { getDetail, getLayers } from '../../utils/spectrum';
+import { SpectrumExportModal } from '../../components/SpectrumExportModal';
 
 const details = [
   'common',
@@ -33,30 +35,6 @@ const Spectrum = () => {
     router.query.id ? `/api/spectrum/${router.query.id}` : null,
     fetcher
   );
-
-  const getDetail = (attributes) => {
-    const _d = attributes.find((a) => a.trait_type === 'Detail').value;
-    const detail = details.find((d) => _d.toLocaleLowerCase().includes(d));
-
-    return detail.toLocaleLowerCase();
-  };
-
-  const getLayers = (attributes) => {
-    const _c = attributes.filter((a) => a.trait_type === 'Layer Color');
-    const _s = attributes.filter((a) => a.trait_type === 'Layer Speed');
-    const layers = [];
-
-    _c.forEach((c, index) => {
-      layers.push({
-        color: `rgb(${c.value})`,
-        speed: _s[index].value,
-      });
-    });
-
-    return layers;
-  };
-
-  console.log(data);
 
   return (
     <Box textAlign="center" fontSize="md">
@@ -81,29 +59,21 @@ const Spectrum = () => {
         {data && data?.spectrum?.metadata?.image && (
           <>
             <SpectrumSvg
-              borderRadius="full"
-              flex="1"
-              maxH="70vh"
-              maxW="85vw"
-              mx="auto"
               layers={getLayers(data.spectrum.metadata.attributes)}
+              detail={getDetail(data.spectrum.metadata.attributes)}
             />
-            <ChakraImage
-              flex="1"
-              maxH="70vh"
-              maxW="85vw"
-              mx="auto"
-              src={data.spectrum.metadata.image}
-              alt="Kinetic Sepctrum"
-              borderRadius="full"
-            />
-            <Grid py={10} maxW="600px" mx="auto">
-              <GridItem colSpan={12}>
-                <Detail
-                  hasImage={false}
-                  detail={getDetail(data.spectrum.metadata.attributes)}
-                />
-              </GridItem>
+            <Box mt={10}>
+              <Detail
+                hasImage={false}
+                detail={getDetail(data.spectrum.metadata.attributes).type}
+              />
+              <SpectrumExportModal
+                layers={getLayers(data.spectrum.metadata.attributes)}
+                detail={getDetail(data.spectrum.metadata.attributes)}
+              />
+            </Box>
+
+            <Grid py={8} maxW="600px" mx="auto">
               {data.spectrum.metadata.attributes.map((attribute, index) => (
                 <GridItem key={index} colSpan={{ base: 6, md: 4 }}>
                   <Box
