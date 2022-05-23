@@ -1,13 +1,6 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import {
-  Heading,
-  Text,
-  Image as ChakraImage,
-  Box,
-  Spinner,
-  GridItem,
-} from '@chakra-ui/react';
+import { Heading, Text, Box, Spinner, GridItem } from '@chakra-ui/react';
 import Head from 'next/head';
 import useSwr from 'swr';
 import { Grid } from '../../components/Grid';
@@ -15,16 +8,6 @@ import { Detail } from '../../components/Detail';
 import { SpectrumSvg } from '../../components/SpectrumSvg';
 import { getDetail, getLayers } from '../../utils/spectrum';
 import { SpectrumExportModal } from '../../components/SpectrumExportModal';
-
-const details = [
-  'common',
-  'rare',
-  'epic',
-  'legendary',
-  'impossible',
-  'perfect',
-  'founder',
-];
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 

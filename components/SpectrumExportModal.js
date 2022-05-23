@@ -32,7 +32,6 @@ function _arrayBufferToBase64(buffer) {
 export const SpectrumExportModal = ({ layers, detail }) => {
   const [loading, setLoading] = useState(false);
   const svgRef = useRef(null);
-  const canvasRef = useRef(null);
   const [value, setValue] = useState(42);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
