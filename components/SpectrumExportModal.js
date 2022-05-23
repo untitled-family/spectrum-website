@@ -4,7 +4,6 @@ import {
   ModalContent,
   Button,
   useDisclosure,
-  Spinner,
   Text,
   Box,
   Slider,
@@ -13,37 +12,46 @@ import {
   SliderThumb,
   Flex,
 } from '@chakra-ui/react';
-import toImg from 'react-svg-to-image';
-import { useEffect, useState } from 'react';
+import { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { SpectrumSvg } from './SpectrumSvg';
 
 export const SpectrumExportModal = ({ layers, detail }) => {
+  const svgRef = useRef(null);
+  const canvasRef = useRef(null);
   const [value, setValue] = useState(42);
-  const [base64, setBase64] = useState(null);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
+  function drawSvgToCanvas(svgElement, ctx, callback) {
+    const svgURL = new XMLSerializer().serializeToString(svgElement);
+    const encodedData = window.btoa(svgURL);
+    const img = new Image();
+
+    img.onload = function () {
+      ctx.drawImage(this, 0, 0);
+      callback();
+    };
+    img.src = `data:image/svg+xml;base64,${encodedData}`;
+  }
+
   const exportToPng = () => {
-    toImg('#kinetic-export', 'Kinetic Spectrum');
-  };
-
-  const toBase64 = () => {
-    const svg = document.querySelector('#kinetic-export');
-
-    if (svg) {
-      const s = new XMLSerializer().serializeToString(svg);
-      const encodedData = window.btoa(s);
-
-      setBase64(encodedData);
+    if (svgRef.current && canvasRef.current) {
+      drawSvgToCanvas(
+        svgRef.current,
+        canvasRef.current.getContext('2d'),
+        () => {
+          const a = document.createElement('a'); // Create <a>
+          a.href = canvasRef.current.toDataURL(); // Image Base64 Goes here
+          a.download = 'kinetic-spectrum.png'; // File name Here
+          a.click(); // Downloaded file
+        }
+      );
     }
   };
 
-  useEffect(() => {
-    toBase64();
-  }, [value]);
-
   return (
     <>
+      <Box ref={canvasRef} as="canvas" />
       <Button
         height="32px"
         px={4}
@@ -75,6 +83,7 @@ export const SpectrumExportModal = ({ layers, detail }) => {
           </Text>
           <Box my={8}>
             <SpectrumSvg
+              ref={svgRef}
               id="kinetic-export"
               layers={layers}
               detail={detail}
@@ -122,9 +131,7 @@ export const SpectrumExportModal = ({ layers, detail }) => {
             colorScheme="black"
             fontWeight="normal"
             w="full"
-            // onClick={exportToPng}
-            download="kinetic-spectrum.png"
-            href={`data:image/png;base64,${base64}`}
+            onClick={exportToPng}
           >
             Download as PNG
           </Button>
@@ -134,8 +141,7 @@ export const SpectrumExportModal = ({ layers, detail }) => {
   );
 };
 
-SpectrumSvg.propTypes = {
+SpectrumExportModal.propTypes = {
   layers: PropTypes.array.isRequired,
   detail: PropTypes.object,
-  time: PropTypes.number,
 };
