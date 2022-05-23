@@ -1,10 +1,9 @@
 import { Box } from '@chakra-ui/react';
-import React, { useState } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
 import { SpectrumBorder } from './SpectrumBorder';
-import { Detail } from './Detail';
 
-export const SpectrumSvg = ({ layers, detail, time }) => (
+export const SpectrumSvg = ({ layers, detail, time, ...props }) => (
   <>
     <Box
       as="svg"
@@ -15,6 +14,7 @@ export const SpectrumSvg = ({ layers, detail, time }) => (
       maxH="70vh"
       maxW="85vw"
       mx="auto"
+      {...props}
     >
       <circle cx="500" cy="500" r="500" fill="#fff" />
 

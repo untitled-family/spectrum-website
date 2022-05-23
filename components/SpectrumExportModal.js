@@ -13,6 +13,7 @@ import {
   SliderThumb,
   Flex,
 } from '@chakra-ui/react';
+import toImg from 'react-svg-to-image';
 import { useState } from 'react';
 import PropTypes from 'prop-types';
 import { SpectrumSvg } from './SpectrumSvg';
@@ -20,6 +21,10 @@ import { SpectrumSvg } from './SpectrumSvg';
 export const SpectrumExportModal = ({ layers, detail }) => {
   const [value, setValue] = useState(42);
   const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const exportToPng = () => {
+    toImg('#kinetic-export', 'Kinetic Spectrum');
+  };
 
   return (
     <>
@@ -53,7 +58,12 @@ export const SpectrumExportModal = ({ layers, detail }) => {
             timeline to export as a PNG.
           </Text>
           <Box my={8}>
-            <SpectrumSvg layers={layers} detail={detail} time={value} />
+            <SpectrumSvg
+              id="kinetic-export"
+              layers={layers}
+              detail={detail}
+              time={value}
+            />
           </Box>
           <Flex mb={8}>
             <Slider
@@ -85,6 +95,7 @@ export const SpectrumExportModal = ({ layers, detail }) => {
             colorScheme="black"
             fontWeight="normal"
             w="full"
+            onClick={exportToPng}
           >
             Download as PNG
           </Button>
