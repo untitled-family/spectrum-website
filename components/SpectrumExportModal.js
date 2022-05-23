@@ -12,46 +12,54 @@ import {
   SliderThumb,
   Flex,
 } from '@chakra-ui/react';
+import * as Sentry from '@sentry/nextjs';
+import axios from 'axios';
 import { useState, useRef } from 'react';
 import PropTypes from 'prop-types';
 import { SpectrumSvg } from './SpectrumSvg';
 
+function _arrayBufferToBase64(buffer) {
+  let binary = '';
+  const bytes = new Uint8Array(buffer);
+  const len = bytes.byteLength;
+  // eslint-disable-next-line no-plusplus
+  for (let i = 0; i < len; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  return window.btoa(binary);
+}
+
 export const SpectrumExportModal = ({ layers, detail }) => {
+  const [loading, setLoading] = useState(false);
   const svgRef = useRef(null);
   const canvasRef = useRef(null);
   const [value, setValue] = useState(42);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  function drawSvgToCanvas(svgElement, ctx, callback) {
-    const svgURL = new XMLSerializer().serializeToString(svgElement);
-    const encodedData = window.btoa(svgURL);
-    const img = new Image();
-
-    img.onload = function () {
-      ctx.drawImage(this, 0, 0);
-      callback();
-    };
-    img.src = `data:image/svg+xml;base64,${encodedData}`;
-  }
-
   const exportToPng = () => {
-    if (svgRef.current && canvasRef.current) {
-      drawSvgToCanvas(
-        svgRef.current,
-        canvasRef.current.getContext('2d'),
-        () => {
-          const a = document.createElement('a'); // Create <a>
-          a.href = canvasRef.current.toDataURL(); // Image Base64 Goes here
-          a.download = 'kinetic-spectrum.png'; // File name Here
-          a.click(); // Downloaded file
-        }
-      );
-    }
+    setLoading(true);
+
+    axios
+      .post('/api/export', {
+        svg: new XMLSerializer().serializeToString(svgRef.current),
+      })
+      .then(function (response) {
+        setLoading(false);
+        const a = document.createElement('a'); // Create <a>
+        a.href = `data:image/png;base64,${_arrayBufferToBase64(
+          response.data.png.data
+        )}`;
+        a.download = 'kinetic-spectrum.png';
+        a.click();
+      })
+      .catch(function (error) {
+        setLoading(false);
+        Sentry.captureException(error);
+      });
   };
 
   return (
     <>
-      <Box ref={canvasRef} as="canvas" />
       <Button
         height="32px"
         px={4}
@@ -78,7 +86,7 @@ export const SpectrumExportModal = ({ layers, detail }) => {
           color="black.500"
         >
           <Text>
-            Select a specific moment of your <strong>Spectrum’s</strong>{' '}
+            Select a specific moment of your <strong>Spectrum's</strong>{' '}
             timeline to export as a PNG.
           </Text>
           <Box my={8}>
@@ -121,7 +129,7 @@ export const SpectrumExportModal = ({ layers, detail }) => {
                 }}
               />
             </Slider>
-            <Text ml={4} w="24px">
+            <Text fontWeight="semibold" ml={4} w="24px">
               {value}s
             </Text>
           </Flex>
@@ -132,6 +140,7 @@ export const SpectrumExportModal = ({ layers, detail }) => {
             fontWeight="normal"
             w="full"
             onClick={exportToPng}
+            isLoading={loading}
           >
             Download as PNG
           </Button>
