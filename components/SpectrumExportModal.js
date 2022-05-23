@@ -129,7 +129,7 @@ export const SpectrumExportModal = ({ layers, detail }) => {
                 }}
               />
             </Slider>
-            <Text fontWeight="semibold" ml={4} w="24px">
+            <Text fontWeight="semibold" ml={4} minW="28px">
               {value}s
             </Text>
           </Flex>
