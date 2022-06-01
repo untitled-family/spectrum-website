@@ -27,18 +27,19 @@ const Spectrum = () => {
   const { id } = router.query;
   const tokenId = parseInt(id, 10);
   const { data, error } = useSwr(id ? `/api/spectrum/${id}` : null, fetcher);
-  const [{ data: totalSupply }] = useContractRead(
+  const [{ data: totalSupplyBigNb }] = useContractRead(
     {
       addressOrName: config.contractAddress,
       contractInterface: contractABI,
     },
     'totalSupply'
   );
+  const totalSupply = totalSupplyBigNb?.toNumber();
 
   const goToPrev = () => {
-    if (!totalSupply._hex) return;
+    if (!totalSupply) return;
 
-    const total = totalSupply.toNumber();
+    const total = totalSupply;
 
     if (tokenId === 0) {
       router.push(`/spectrum/${total - 1}`);
@@ -48,9 +49,9 @@ const Spectrum = () => {
   };
 
   const goToNext = () => {
-    if (!totalSupply._hex) return;
+    if (!totalSupply) return;
 
-    const total = totalSupply.toNumber();
+    const total = totalSupply;
 
     if (tokenId >= total - 1) {
       router.push(`/spectrum/0`);
