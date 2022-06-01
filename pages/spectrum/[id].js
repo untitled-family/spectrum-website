@@ -1,23 +1,63 @@
 import { useRouter } from 'next/router';
 import Link from 'next/link';
-import { Heading, Text, Box, Spinner, GridItem } from '@chakra-ui/react';
+import {
+  Heading,
+  Text,
+  Box,
+  Spinner,
+  GridItem,
+  Flex,
+  Button,
+} from '@chakra-ui/react';
 import Head from 'next/head';
 import useSwr from 'swr';
+import { useContractRead } from 'wagmi';
 import { Grid } from '../../components/Grid';
 import { Detail } from '../../components/Detail';
 import { SpectrumSvg } from '../../components/SpectrumSvg';
 import { getDetail, getLayers } from '../../utils/spectrum';
 import { SpectrumExportModal } from '../../components/SpectrumExportModal';
+import { config } from '../../utils/config';
+import contractABI from '../../utils/contractABI.json';
 
 const fetcher = (url) => fetch(url).then((res) => res.json());
 
 const Spectrum = () => {
   const router = useRouter();
   const { id } = router.query;
-  const { data, error } = useSwr(
-    router.query.id ? `/api/spectrum/${router.query.id}` : null,
-    fetcher
+  const tokenId = parseInt(id, 10);
+  const { data, error } = useSwr(id ? `/api/spectrum/${id}` : null, fetcher);
+  const [{ data: totalSupply }] = useContractRead(
+    {
+      addressOrName: config.contractAddress,
+      contractInterface: contractABI,
+    },
+    'totalSupply'
   );
+
+  const goToPrev = () => {
+    if (!totalSupply._hex) return;
+
+    const total = totalSupply.toNumber();
+
+    if (tokenId === 0) {
+      router.push(`/spectrum/${total - 1}`);
+    } else {
+      router.push(`/spectrum/${tokenId - 1}`);
+    }
+  };
+
+  const goToNext = () => {
+    if (!totalSupply._hex) return;
+
+    const total = totalSupply.toNumber();
+
+    if (tokenId >= total - 1) {
+      router.push(`/spectrum/0`);
+    } else {
+      router.push(`/spectrum/${tokenId + 1}`);
+    }
+  };
 
   return (
     <Box textAlign="center" fontSize="md">
@@ -25,19 +65,59 @@ const Spectrum = () => {
         <title>Kinetic Spectrums</title>
       </Head>
       <Box alignItems="center" px={6}>
-        <Link href="/">
-          <a>
-            <Heading
-              my={12}
-              fontWeight="semibold"
-              fontSize="lg"
-              as="h1"
-              color="white"
+        <Flex
+          alignItems="center"
+          justifyContent={totalSupply ? 'space-between' : 'center'}
+        >
+          {totalSupply && (
+            <Button
+              height="32px"
+              px={4}
+              lineHeight={1}
+              fontSize="sm"
+              borderRadius="lg"
+              colorScheme="black"
+              border="1px solid rgba(255,255,255,0.2)"
+              _hover={{ borderColor: 'rgba(255,255,255,0.5)' }}
+              background="transparent"
+              minW="80px"
+              onClick={goToPrev}
             >
-              Kinetic Spectrums - #{id}
-            </Heading>
-          </a>
-        </Link>
+              Previous
+            </Button>
+          )}
+
+          <Link href="/">
+            <a>
+              <Heading
+                my={12}
+                fontWeight="semibold"
+                fontSize="lg"
+                as="h1"
+                color="white"
+              >
+                Kinetic Spectrums - #{id}
+              </Heading>
+            </a>
+          </Link>
+          {totalSupply && (
+            <Button
+              minW="80px"
+              height="32px"
+              px={4}
+              lineHeight={1}
+              fontSize="sm"
+              borderRadius="lg"
+              colorScheme="black"
+              border="1px solid rgba(255,255,255,0.2)"
+              _hover={{ borderColor: 'rgba(255,255,255,0.5)' }}
+              background="transparent"
+              onClick={goToNext}
+            >
+              Next
+            </Button>
+          )}
+        </Flex>
 
         {data && data?.spectrum?.metadata?.image && (
           <>
