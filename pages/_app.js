@@ -8,6 +8,7 @@ import ReactGA from 'react-ga4';
 import { theme } from '../utils/theme';
 import { config } from '../utils/config';
 import '../styles/globals.css';
+import { Footer } from '../components/Footer';
 
 const { infuraId } = config;
 
@@ -47,6 +48,7 @@ export default function App({ Component, pageProps }) {
     <Provider autoConnect connectors={connectors}>
       <ChakraProvider theme={theme}>
         <Component {...pageProps} />
+        <Footer />
       </ChakraProvider>
     </Provider>
   );
