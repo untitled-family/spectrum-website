@@ -96,7 +96,7 @@ const Spectrum = () => {
                 as="h1"
                 color="white"
               >
-                Kinetic Spectrums - #{id}
+                Kinetic Spectrums #{id}
               </Heading>
             </a>
           </Link>
