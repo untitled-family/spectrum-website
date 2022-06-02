@@ -9,6 +9,7 @@ export const SpectrumThumbnail = ({ token }) => (
       <Box p={[4, 4, 6, 8, 8, 12]}>
         <AspectRatio ratio={1 / 1}>
           <Image
+            borderRadius="full"
             src={token.image.mediaEncoding.original}
             alt={`Spectrum ${token.tokenId}`}
             fallbackSrc="/placeholder.svg"
@@ -17,7 +18,7 @@ export const SpectrumThumbnail = ({ token }) => (
 
         <Text mt={4}>Spectrum #{token.tokenId}</Text>
         <Text fontWeight="normal">
-          Owner: <WalletAddress address={token.owner} />
+          <WalletAddress address={token.owner} />
         </Text>
       </Box>
     </a>
