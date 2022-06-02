@@ -7,6 +7,7 @@ import {
 } from '@chakra-ui/react';
 import Head from 'next/head';
 import { useEffect } from 'react';
+import Link from 'next/link';
 import { Detail } from '../components/Detail';
 import { Modal } from '../components/Modal';
 import { Section } from '../components/Section';
@@ -67,6 +68,9 @@ export default function Home() {
         <Box mb={12}>
           <Text>1,111 Spectrums. 100% on-chain NFTs.</Text>
           <Modal />
+          <Box fontWeight="normal" mt={12}>
+            <Link href="/spectrums">View minted spectrums</Link>
+          </Box>
         </Box>
       </Box>
 
