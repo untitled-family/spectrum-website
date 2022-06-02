@@ -6,7 +6,7 @@ import { WalletAddress } from './WalletAddress';
 export const SpectrumThumbnail = ({ token }) => (
   <Link href={`/spectrum/${token.tokenId}`}>
     <a>
-      <Box p={[6, 8, 8, 8, 12]}>
+      <Box p={[4, 4, 6, 8, 8, 12]}>
         <AspectRatio ratio={1 / 1}>
           <Image
             src={token.image.mediaEncoding.original}

@@ -81,7 +81,7 @@ export default function Spectrums({ mints, pageInfo }) {
 
   return (
     <Box textAlign="center" fontSize="md">
-      <SimpleGrid maxWidth={1600} mx="auto" columns={[1, 1, 2, 2, 3, 3]}>
+      <SimpleGrid maxWidth={1600} mx="auto" columns={[1, 2, 3, 3, 4, 4]}>
         {spectrums.map(({ token }) => (
           <SpectrumThumbnail token={token} key={token.tokenId} />
         ))}
