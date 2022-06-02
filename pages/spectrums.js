@@ -1,4 +1,5 @@
 import { Box, Button, SimpleGrid, Heading } from '@chakra-ui/react';
+import Head from 'next/head';
 import { gql } from '@apollo/client';
 import { useEffect, useState } from 'react';
 import PropTypes from 'prop-types';
@@ -82,6 +83,9 @@ export default function Spectrums({ mints, pageInfo }) {
 
   return (
     <Box textAlign="center" fontSize="md">
+      <Head>
+        <title>Kinetic Spectrums - Minted Spectrums</title>
+      </Head>
       <Link href="/">
         <a>
           <Heading
