@@ -11,6 +11,7 @@ export const SpectrumThumbnail = ({ token }) => (
           <Image
             src={token.image.mediaEncoding.original}
             alt={`Spectrum ${token.tokenId}`}
+            fallbackSrc="/placeholder.svg"
           />
         </AspectRatio>
 
